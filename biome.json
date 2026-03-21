@@ -1,0 +1,82 @@
+{
+    "$schema": "https://biomejs.dev/schemas/2.4.8/schema.json",
+    "formatter": {
+        "enabled": true,
+        "indentStyle": "space",
+        "indentWidth": 4,
+        "lineWidth": 100,
+        "formatWithErrors": true
+    },
+    "javascript": {
+        "parser": { "unsafeParameterDecoratorsEnabled": true },
+        "formatter": { "quoteStyle": "double", "trailingCommas": "all" }
+    },
+    "css": {
+        "parser": { "tailwindDirectives": true },
+        "formatter": { "enabled": true, "indentWidth": 4 }
+    },
+    "html": {
+        "formatter": {
+            "enabled": true,
+            "indentWidth": 4,
+            "indentScriptAndStyle": true
+        }
+    },
+    "overrides": [
+        {
+            "includes": [
+                "**/dist/**",
+                "**/node_modules/**",
+                "**/.yarn/**",
+                "**/coverage/**",
+                "**/*.d.ts",
+                ".pnp.cjs",
+                ".pnp.loader.mjs"
+            ],
+            "linter": { "enabled": false },
+            "formatter": { "enabled": false }
+        },
+        {
+            "includes": ["apps/api/src/**/*.ts"],
+            "linter": {
+                "rules": {
+                    "style": {
+                        "useImportType": "off"
+                    }
+                }
+            }
+        },
+        {
+            "includes": ["**/*.css"],
+            "linter": {
+                "rules": {
+                    "suspicious": {
+                        "noUnknownAtRules": "off"
+                    }
+                }
+            }
+        },
+        {
+            "includes": ["**/*.vue"],
+            "linter": {
+                "rules": {
+                    "correctness": {
+                        "noUnusedVariables": "off",
+                        "noUnusedImports": "off",
+                        "noVueDuplicateKeys": "off"
+                    }
+                }
+            },
+            "formatter": {
+                "indentStyle": "space",
+                "indentWidth": 4
+            },
+            "html": {
+                "formatter": {
+                    "indentWidth": 4,
+                    "indentScriptAndStyle": true
+                }
+            }
+        }
+    ]
+}

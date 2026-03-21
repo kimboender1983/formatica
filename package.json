@@ -1,0 +1,23 @@
+{
+    "private": true,
+    "workspaces": [
+        "packages/*",
+        "playground"
+    ],
+    "scripts": {
+        "dev": "yarn workspace formcraft-playground dev",
+        "build": "yarn workspace @formcraft/vue build",
+        "build:playground": "yarn workspace formcraft-playground build",
+        "lint": "biome check .",
+        "lint:fix": "biome check --write .",
+        "format": "biome format --write .",
+        "typecheck": "yarn workspaces foreach -A run typecheck",
+        "test": "vitest"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "^2.4.4",
+        "typescript": "^5.4.0",
+        "vitest": "^1.6.0"
+    },
+    "packageManager": "yarn@4.7.0+sha512.5a0afa1d4c1d844b3447ee3319633797bcd6385d9a44be07993ae52ff4facabccafb4af5dcd1c2f9a94ac113e5e9ff56f6130431905884414229e284e37bb7c9"
+}

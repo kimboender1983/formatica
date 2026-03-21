@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        @apply scroll-smooth;
+    }
+
+    body {
+        @apply bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100;
+    }
+}
+
+@layer components {
+    /* Page transition */
+    .page-enter-active,
+    .page-leave-active {
+        transition:
+            opacity 0.15s ease,
+            transform 0.15s ease;
+    }
+
+    .page-enter-from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    .page-leave-to {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    /* Sidebar transition */
+    .sidebar-enter-active,
+    .sidebar-leave-active {
+        transition:
+            transform 0.2s ease,
+            opacity 0.2s ease;
+    }
+
+    .sidebar-enter-from,
+    .sidebar-leave-to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+@layer utilities {
+    /* Custom scrollbar */
+    .scrollbar-thin {
+        scrollbar-width: thin;
+        scrollbar-color: #d1d5db transparent;
+    }
+
+    .dark .scrollbar-thin {
+        scrollbar-color: #374151 transparent;
+    }
+
+    .scrollbar-thin::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    .scrollbar-thin::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+        background-color: #d1d5db;
+        border-radius: 3px;
+    }
+
+    .dark .scrollbar-thin::-webkit-scrollbar-thumb {
+        background-color: #374151;
+    }
+}
