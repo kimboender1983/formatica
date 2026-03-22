@@ -84,6 +84,7 @@
             if (ruleName === "minLength" && strValue.trim()) {
                 const min = Number.parseInt(
                     typeof rule === "string" ? (rule.split(":")[1] ?? "0") : "0",
+                    10,
                 );
                 if (strValue.length < min) {
                     fieldErrors.value[name] = `Must be at least ${min} characters`;

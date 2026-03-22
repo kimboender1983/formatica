@@ -55,7 +55,7 @@ export function SliderField({
                 onTouchStart={() => setIsActive(true)}
                 onTouchEnd={() => setIsActive(false)}
                 onFocus={() => setIsActive(true)}
-                onBlur={(e) => {
+                onBlur={(_e) => {
                     setIsActive(false);
                     onBlur?.();
                 }}

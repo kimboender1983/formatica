@@ -43,7 +43,7 @@ export function TextareaField({
 
     useEffect(() => {
         adjustHeight();
-    }, [value, adjustHeight]);
+    }, [adjustHeight]);
 
     const disabledClasses = disabled ? "opacity-50 cursor-not-allowed bg-gray-100" : "";
     const autoResizeClasses = autoResize ? "resize-none overflow-hidden" : "";

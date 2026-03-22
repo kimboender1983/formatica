@@ -649,7 +649,6 @@ function RenderTabs({
                     id={tabPanelId}
                     role="tabpanel"
                     aria-labelledby={`fc-tab-${activeIndex}`}
-                    tabIndex={0}
                     className="pt-4"
                 >
                     {activeTab.children.map((child, i) => (

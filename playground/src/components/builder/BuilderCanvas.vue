@@ -106,7 +106,8 @@
 
         if (isReorder) {
             // Reorder existing node
-            const from = reorderFrom.value!;
+            const from = reorderFrom.value;
+            if (from === null) return;
             reorderFrom.value = null;
 
             if (indicator === null || from === idx) return;

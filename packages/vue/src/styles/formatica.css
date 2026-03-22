@@ -48,7 +48,7 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="
 /* --- Border radius on buttons --- */
 .fc-form-builder button[type="button"],
 .fc-form-builder button[type="submit"] {
-    border-radius: var(--_radius) !important;
+    border-radius: var(--_radius);
 }
 
 /* --- Required asterisk --- */
@@ -66,15 +66,15 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="
 ):focus,
 .fc-form-builder textarea:focus,
 .fc-form-builder select:focus {
-    border-color: var(--_border-focus) !important;
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--_primary) 20%, transparent) !important;
-    outline: none !important;
+    border-color: var(--_border-focus);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--_primary) 20%, transparent);
+    outline: none;
 }
 
 /* Generic focus ring for buttons, collapsible headers, step circles, tabs */
 .fc-form-builder button:focus,
 .fc-form-builder [tabindex]:focus {
-    --tw-ring-color: color-mix(in srgb, var(--_primary) 40%, transparent) !important;
+    --tw-ring-color: color-mix(in srgb, var(--_primary) 40%, transparent);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -87,11 +87,11 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="
 }
 
 .fc-form-builder input[type="range"] {
-    accent-color: var(--_primary) !important;
+    accent-color: var(--_primary);
 }
 
 .fc-form-builder .accent-blue-500 {
-    accent-color: var(--_primary) !important;
+    accent-color: var(--_primary);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -120,17 +120,17 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="
 
 .fc-form-builder .border-red-500,
 .fc-form-builder .focus\:border-red-500:focus {
-    border-color: var(--_error) !important;
+    border-color: var(--_error);
 }
 
 .fc-form-builder .text-red-500,
 .fc-form-builder .text-red-600 {
-    color: var(--_error) !important;
+    color: var(--_error);
 }
 
 .fc-form-builder .ring-red-500\/20,
 .fc-form-builder .focus\:ring-red-500\/20:focus {
-    --tw-ring-color: color-mix(in srgb, var(--_error) 20%, transparent) !important;
+    --tw-ring-color: color-mix(in srgb, var(--_error) 20%, transparent);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -139,11 +139,11 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="
 
 .fc-form-builder button[role="switch"][aria-checked="true"],
 .fc-form-builder button.bg-blue-500:not([type="submit"]) {
-    background-color: var(--_primary) !important;
+    background-color: var(--_primary);
 }
 
 .fc-form-builder button[role="switch"]:focus {
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--_primary) 20%, transparent) !important;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--_primary) 20%, transparent);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -152,28 +152,28 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="
 
 /* Active / completed step circle */
 .fc-form-builder .border-blue-500.bg-blue-500 {
-    border-color: var(--_primary) !important;
-    background-color: var(--_primary) !important;
+    border-color: var(--_primary);
+    background-color: var(--_primary);
 }
 
 /* Active step circle (border only, not filled) */
 .fc-form-builder .border-blue-500:not(.bg-blue-500) {
-    border-color: var(--_primary) !important;
+    border-color: var(--_primary);
 }
 
 /* Next button in steps */
 .fc-form-builder .bg-blue-500.text-white {
-    background-color: var(--_primary) !important;
+    background-color: var(--_primary);
 }
 
 .fc-form-builder .bg-blue-500.text-white:hover,
 .fc-form-builder .hover\:bg-blue-600:hover {
-    background-color: color-mix(in srgb, var(--_primary) 85%, black) !important;
+    background-color: color-mix(in srgb, var(--_primary) 85%, black);
 }
 
 /* Completed step check icon bg */
 .fc-form-builder .bg-blue-500 {
-    background-color: var(--_primary) !important;
+    background-color: var(--_primary);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -182,13 +182,13 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="
 
 /* Active tab text */
 .fc-form-builder .text-blue-600 {
-    color: var(--_primary) !important;
+    color: var(--_primary);
 }
 
 /* Active tab underline bar */
 .fc-form-builder .bg-blue-500.h-0\.5,
 .fc-form-builder [class*="bg-blue-500"][class*="h-0.5"] {
-    background-color: var(--_primary) !important;
+    background-color: var(--_primary);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -196,26 +196,26 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="
    ═══════════════════════════════════════════════════════════════════ */
 
 .fc-form-builder .bg-blue-100 {
-    background-color: color-mix(in srgb, var(--_primary) 15%, white) !important;
+    background-color: color-mix(in srgb, var(--_primary) 15%, white);
 }
 
 .fc-form-builder .text-blue-800 {
-    color: color-mix(in srgb, var(--_primary) 80%, black) !important;
+    color: color-mix(in srgb, var(--_primary) 80%, black);
 }
 
 .fc-form-builder .text-blue-600 {
-    color: var(--_primary) !important;
+    color: var(--_primary);
 }
 
 .fc-form-builder .text-blue-600:hover,
 .fc-form-builder .hover\:text-blue-800:hover {
-    color: color-mix(in srgb, var(--_primary) 80%, black) !important;
+    color: color-mix(in srgb, var(--_primary) 80%, black);
 }
 
 /* Tag input / select dropdown focused wrapper */
 .fc-form-builder .border-blue-500.ring-2 {
-    border-color: var(--_border-focus) !important;
-    --tw-ring-color: color-mix(in srgb, var(--_primary) 20%, transparent) !important;
+    border-color: var(--_border-focus);
+    --tw-ring-color: color-mix(in srgb, var(--_primary) 20%, transparent);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -223,11 +223,11 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="
    ═══════════════════════════════════════════════════════════════════ */
 
 .fc-form-builder .bg-blue-50 {
-    background-color: color-mix(in srgb, var(--_primary) 8%, white) !important;
+    background-color: color-mix(in srgb, var(--_primary) 8%, white);
 }
 
 .fc-form-builder .text-blue-700 {
-    color: color-mix(in srgb, var(--_primary) 70%, black) !important;
+    color: color-mix(in srgb, var(--_primary) 70%, black);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -235,18 +235,18 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="
    ═══════════════════════════════════════════════════════════════════ */
 
 .fc-form-builder .border-blue-500.bg-blue-500.text-white {
-    border-color: var(--_primary) !important;
-    background-color: var(--_primary) !important;
+    border-color: var(--_primary);
+    background-color: var(--_primary);
 }
 
 /* Radio outer ring when selected */
 .fc-form-builder .border-blue-500 {
-    border-color: var(--_primary) !important;
+    border-color: var(--_primary);
 }
 
 /* Radio inner dot */
 .fc-form-builder .rounded-full.bg-blue-500 {
-    background-color: var(--_primary) !important;
+    background-color: var(--_primary);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -254,13 +254,13 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="
    ═══════════════════════════════════════════════════════════════════ */
 
 .fc-form-builder .border-blue-500.bg-blue-50 {
-    border-color: var(--_primary) !important;
-    background-color: color-mix(in srgb, var(--_primary) 8%, white) !important;
+    border-color: var(--_primary);
+    background-color: color-mix(in srgb, var(--_primary) 8%, white);
 }
 
 /* "browse" link text */
 .fc-form-builder .text-blue-500 {
-    color: var(--_primary) !important;
+    color: var(--_primary);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -268,24 +268,24 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="
    ═══════════════════════════════════════════════════════════════════ */
 
 .fc-form-builder .focus\:ring-blue-500\/40:focus {
-    --tw-ring-color: color-mix(in srgb, var(--_primary) 40%, transparent) !important;
+    --tw-ring-color: color-mix(in srgb, var(--_primary) 40%, transparent);
 }
 
 .fc-form-builder .focus\:border-blue-500:focus {
-    border-color: var(--_border-focus) !important;
+    border-color: var(--_border-focus);
 }
 
 .fc-form-builder .focus\:ring-blue-500\/20:focus {
-    --tw-ring-color: color-mix(in srgb, var(--_primary) 20%, transparent) !important;
+    --tw-ring-color: color-mix(in srgb, var(--_primary) 20%, transparent);
 }
 
 .fc-form-builder .ring-blue-500\/20 {
-    --tw-ring-color: color-mix(in srgb, var(--_primary) 20%, transparent) !important;
+    --tw-ring-color: color-mix(in srgb, var(--_primary) 20%, transparent);
 }
 
 /* Select dropdown search input focus */
 .fc-form-builder .fc-select-search:focus {
-    border-color: var(--_border-focus) !important;
+    border-color: var(--_border-focus);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -582,7 +582,7 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="
 
 /* --- Tags: dark mode chip colors use color-mix with dark background --- */
 .dark .fc-form-builder .bg-blue-100 {
-    background-color: color-mix(in srgb, var(--_primary) 20%, #1f2937) !important;
+    background-color: color-mix(in srgb, var(--_primary) 20%, #1f2937);
 }
 
 /* Dark mode uses `.dark` class strategy only (Tailwind darkMode: 'class').

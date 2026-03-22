@@ -99,12 +99,12 @@ function parseRuleString(rule: string): ParsedRule {
         } else if (name === "pattern") {
             params.pattern = paramStr;
         } else {
-            params[name!] = values.length === 1 ? values[0] : values;
+            params[name] = values.length === 1 ? values[0] : values;
             // Also set as numeric if parseable
             if (values.length === 1) {
                 const n = Number(values[0]);
                 if (!Number.isNaN(n)) {
-                    params[name!] = n;
+                    params[name] = n;
                     // Common alias: minLength:3 → params.min = 3
                     if (name === "minLength") params.min = n;
                     if (name === "maxLength") params.max = n;
@@ -112,7 +112,7 @@ function parseRuleString(rule: string): ParsedRule {
             }
         }
     }
-    return { name: name!, params };
+    return { name, params };
 }
 
 // ---------------------------------------------------------------------------

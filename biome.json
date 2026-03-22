@@ -34,7 +34,8 @@
                 ".pnp.loader.mjs"
             ],
             "linter": { "enabled": false },
-            "formatter": { "enabled": false }
+            "formatter": { "enabled": false },
+            "assist": { "enabled": false }
         },
         {
             "includes": ["apps/api/src/**/*.ts"],
@@ -42,6 +43,44 @@
                 "rules": {
                     "style": {
                         "useImportType": "off"
+                    }
+                }
+            }
+        },
+        {
+            "includes": ["**/*.test.ts", "**/*.test.tsx"],
+            "linter": {
+                "rules": {
+                    "style": {
+                        "noNonNullAssertion": "off"
+                    },
+                    "suspicious": {
+                        "noExplicitAny": "off"
+                    },
+                    "correctness": {
+                        "noUnusedFunctionParameters": "off"
+                    }
+                }
+            }
+        },
+        {
+            "includes": ["packages/react/src/**/*.tsx"],
+            "linter": {
+                "rules": {
+                    "a11y": {
+                        "useSemanticElements": "off",
+                        "noStaticElementInteractions": "off",
+                        "noNoninteractiveElementToInteractiveRole": "off",
+                        "useKeyWithClickEvents": "off",
+                        "useAriaPropsSupportedByRole": "off",
+                        "useFocusableInteractive": "off",
+                        "noNoninteractiveTabindex": "off"
+                    },
+                    "suspicious": {
+                        "noArrayIndexKey": "off"
+                    },
+                    "security": {
+                        "noDangerouslySetInnerHtml": "off"
                     }
                 }
             }

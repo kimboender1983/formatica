@@ -117,7 +117,6 @@
         return vars;
     });
 
-
     // Initialize form (provides FormContextKey and FormI18nKey)
     const form = useForm(props.schema, {
         locale: resolvedLocale.value,

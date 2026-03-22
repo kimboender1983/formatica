@@ -1,5 +1,6 @@
 <script setup lang="ts">
     import type { FormSchema, ThemeConfig } from "@formatica/vue";
+    // biome-ignore lint/style/useImportType: FormBuilder is used as a component in the template
     import { extractFields, FormBuilder } from "@formatica/vue";
     import { computed, ref, watch } from "vue";
 
@@ -75,7 +76,7 @@
     );
 
     // Emit form state on modelValue changes
-    function onModelUpdate(values: Record<string, unknown>) {
+    function onModelUpdate(_values: Record<string, unknown>) {
         emitFormState();
     }
 
