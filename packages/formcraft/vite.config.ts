@@ -1,9 +1,22 @@
 import { resolve } from "node:path";
+import { copyFileSync, mkdirSync } from "node:fs";
 import vue from "@vitejs/plugin-vue";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-    plugins: [vue()],
+    plugins: [
+        vue(),
+        {
+            name: "copy-formatica-css",
+            closeBundle() {
+                mkdirSync(resolve(__dirname, "dist"), { recursive: true });
+                copyFileSync(
+                    resolve(__dirname, "src/styles/formatica.css"),
+                    resolve(__dirname, "dist/style.css"),
+                );
+            },
+        },
+    ],
     build: {
         lib: {
             entry: resolve(__dirname, "src/index.ts"),
