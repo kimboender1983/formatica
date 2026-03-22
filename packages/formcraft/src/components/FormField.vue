@@ -1,6 +1,7 @@
 <script setup lang="ts">
+    import type { Component, ComputedRef } from "vue";
     import { computed, inject } from "vue";
-    import { getFieldComponent } from "../core/fieldRegistry";
+    import { FormComponentsKey, getFieldComponent } from "../core/fieldRegistry";
     import { evaluateCondition } from "../core/useConditions";
     import { FormContextKey } from "../core/useForm";
     import type { FormInstance } from "../types/form";
@@ -19,6 +20,12 @@
         );
     }
 
+    // Per-instance component overrides from FormBuilder's `components` prop
+    const componentOverrides = inject<ComputedRef<Record<string, Component>> | null>(
+        FormComponentsKey,
+        null,
+    );
+
     const fieldSchema = computed<FieldSchema | undefined>(() =>
         extractFields(form.schema.fields).find((f) => f.name === props.name),
     );
@@ -26,6 +33,10 @@
     const inputComponent = computed(() => {
         const schema = fieldSchema.value;
         if (!schema) return undefined;
+        // 1. Per-instance override (components prop on FormBuilder)
+        const override = componentOverrides?.value?.[schema.type];
+        if (override) return override;
+        // 2. Global registry
         return getFieldComponent(schema.type);
     });
 

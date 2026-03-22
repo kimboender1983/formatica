@@ -1,6 +1,6 @@
 <script setup lang="ts">
-    import { computed, onMounted, watch } from "vue";
-    import { hasFieldType, registerFieldType } from "../core/fieldRegistry";
+    import { type Component, computed, onMounted, provide, watch } from "vue";
+    import { FormComponentsKey, hasFieldType, registerFieldType } from "../core/fieldRegistry";
     import { useForm } from "../core/useForm";
     import { useFormI18nContext } from "../core/useFormI18n";
     import { useTheme, useThemeClasses } from "../core/useTheme";
@@ -31,6 +31,8 @@
             fallbackLocale?: string;
             modelValue?: Record<string, unknown>;
             theme?: ThemeConfig;
+            /** Override built-in components or register custom field types per instance. */
+            components?: Record<string, Component>;
         }>(),
         {
             locale: "en",
@@ -66,6 +68,12 @@
             registerFieldType(type, component);
         }
     }
+
+    // Provide per-instance component overrides
+    provide(
+        FormComponentsKey,
+        computed(() => props.components ?? {}),
+    );
 
     // Initialize theme (provides FormThemeKey)
     useTheme(props.theme);

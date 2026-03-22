@@ -6,6 +6,7 @@
 export { default as FormBuilder } from "./components/FormBuilder.vue";
 // Field registry
 export {
+    FormComponentsKey,
     getFieldComponent,
     getRegisteredFieldTypes,
     hasFieldType,
@@ -21,14 +22,11 @@ export {
 } from "./core/ruleRegistry";
 // Schema parser
 export { parseFormSchema, SchemaValidationError } from "./core/schemaParser";
-// Utilities
-export { extractFields, isFieldNode } from "./utils/extractFields";
 export type { UseFormOptions } from "./core/useForm";
 // Composables
 export { FormContextKey, useForm } from "./core/useForm";
 export type { FormI18nInstance, UseFormI18nOptions } from "./core/useFormI18n";
 export { FormI18nKey, useFormI18n, useFormI18nContext } from "./core/useFormI18n";
-
 // Types
 export type {
     // Validation
@@ -97,3 +95,5 @@ export type {
     ThemeConfig,
     ValidationRule,
 } from "./types";
+// Utilities
+export { extractFields, isFieldNode } from "./utils/extractFields";

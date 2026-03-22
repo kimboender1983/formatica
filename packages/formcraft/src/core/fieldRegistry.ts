@@ -2,7 +2,14 @@
 // FormCraft – Field component registry
 // ---------------------------------------------------------------------------
 
-import type { Component } from "vue";
+import type { Component, ComputedRef, InjectionKey } from "vue";
+
+// ---------------------------------------------------------------------------
+// Per-instance component overrides (provided by FormBuilder)
+// ---------------------------------------------------------------------------
+
+export const FormComponentsKey: InjectionKey<ComputedRef<Record<string, Component>>> =
+    Symbol("FormCraftComponents");
 
 // ---------------------------------------------------------------------------
 // Registry
