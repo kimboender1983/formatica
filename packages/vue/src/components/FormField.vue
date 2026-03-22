@@ -12,12 +12,13 @@
         name: string;
     }>();
 
-    const form = inject<FormInstance>(FormContextKey);
-    if (!form) {
+    const _form = inject<FormInstance>(FormContextKey);
+    if (!_form) {
         throw new Error(
             "FormField must be used inside a FormBuilder (FormContextKey not provided)",
         );
     }
+    const form: FormInstance = _form;
 
     // Per-instance component overrides from FormBuilder's `components` prop
     const componentOverrides = inject<ComputedRef<Record<string, Component>> | null>(

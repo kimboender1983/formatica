@@ -144,13 +144,13 @@
       class="text-center"
     >
       <h3 class="text-base font-semibold text-gray-800">
-        {{ visibleSteps[currentStep].title }}
+        {{ visibleSteps[currentStep]!.title }}
       </h3>
       <p
-        v-if="visibleSteps[currentStep].description"
+        v-if="visibleSteps[currentStep]!.description"
         class="mt-1 text-sm text-gray-500"
       >
-        {{ visibleSteps[currentStep].description }}
+        {{ visibleSteps[currentStep]!.description }}
       </p>
     </div>
 
@@ -168,7 +168,7 @@
         v-if="visibleSteps[currentStep]"
         :key="currentStep"
       >
-        <LayoutRenderer :nodes="visibleSteps[currentStep].children" />
+        <LayoutRenderer :nodes="visibleSteps[currentStep]!.children" />
       </div>
     </Transition>
 

@@ -57,7 +57,7 @@
         if (props.multiple) {
             emit("update:modelValue", [...files.value, ...valid]);
         } else {
-            emit("update:modelValue", valid[0]);
+            emit("update:modelValue", valid[0] ?? null);
         }
     }
 

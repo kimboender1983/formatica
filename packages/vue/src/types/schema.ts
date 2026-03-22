@@ -333,6 +333,7 @@ export interface TabsNode {
 export interface TabNodeItem {
     title: string;
     icon?: string;
+    disabled?: boolean;
     children: SchemaNode[];
 }
 

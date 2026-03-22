@@ -124,8 +124,9 @@
                 break;
             case "Enter":
                 event.preventDefault();
-                if (highlightedIndex.value >= 0 && filteredOptions.value[highlightedIndex.value]) {
-                    selectOption(filteredOptions.value[highlightedIndex.value]);
+                if (highlightedIndex.value >= 0) {
+                    const option = filteredOptions.value[highlightedIndex.value];
+                    if (option) selectOption(option);
                 }
                 break;
             case "Escape":

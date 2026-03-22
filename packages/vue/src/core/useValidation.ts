@@ -13,7 +13,8 @@ import type { FormContext } from "../types/form";
 
 function parseRuleString(input: string): ValidationRule[] {
     return input.split("|").map((segment) => {
-        const [name, ...paramParts] = segment.split(":");
+        const [rawName, ...paramParts] = segment.split(":");
+        const name = rawName ?? "";
         const params: Record<string, unknown> = {};
         if (paramParts.length > 0) {
             const paramStr = paramParts.join(":");
@@ -122,7 +123,7 @@ export function useValidation(options: UseValidationOptions): UseValidationRetur
             debouncedValidators.set(
                 key,
                 debounce(async (...args: never[]) => {
-                    return runValidateField(args[0] as string, args[1] as FormContext);
+                    return runValidateField(args[0] as unknown as string, args[1] as unknown as FormContext);
                 }, ms),
             );
         }

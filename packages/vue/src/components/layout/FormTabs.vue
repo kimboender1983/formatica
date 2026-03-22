@@ -114,7 +114,7 @@
         tabindex="0"
         class="pt-4"
       >
-        <LayoutRenderer :nodes="visibleTabs[activeIndex].children" />
+        <LayoutRenderer :nodes="visibleTabs[activeIndex]!.children" />
       </div>
     </Transition>
   </div>

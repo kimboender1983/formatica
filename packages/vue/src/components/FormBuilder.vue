@@ -52,7 +52,7 @@
     const resolvedComponents = computed(() => props.components ?? globalOptions?.components ?? {});
 
     // Register built-in field types (idempotent)
-    const builtInTypes: [string, typeof TextInput][] = [
+    const builtInTypes: [string, Component][] = [
         ["text", TextInput],
         ["number", NumberInput],
         ["textarea", TextareaInput],
