@@ -5,6 +5,7 @@
 import type {
     DividerNode,
     FieldSchema,
+    FormContext as CoreFormContext,
     FormSchema,
     GroupNode,
     OptionItem,
@@ -147,11 +148,19 @@ function getActionLabel(
 function resolveOptions(
     options:
         | OptionItem[]
+        | ((ctx: CoreFormContext) => OptionItem[] | Promise<OptionItem[]>)
         | ((...args: unknown[]) => OptionItem[] | Promise<OptionItem[]>)
         | undefined,
 ): OptionItem[] {
     if (Array.isArray(options)) return options;
     return [];
+}
+
+function resolveDisabled(
+    disabled: boolean | ((ctx: CoreFormContext) => boolean) | undefined,
+): boolean {
+    if (typeof disabled === "function") return false;
+    return disabled ?? false;
 }
 
 function DefaultFieldRenderer({ field, value, onChange, onBlur, disabled }: FieldComponentProps) {
@@ -299,8 +308,8 @@ function renderField(
             touched={form.touched[field.name]}
             helpText={field.helpText}
             tooltip={field.tooltip}
-            disabled={field.disabled}
-            readOnly={field.readOnly}
+            disabled={resolveDisabled(field.disabled)}
+            readOnly={field.readOnly === true}
             fieldName={field.name}
             className={field.className}
             style={field.style as React.CSSProperties}
