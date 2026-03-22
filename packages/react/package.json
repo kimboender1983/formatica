@@ -1,6 +1,6 @@
 {
     "name": "@formatica/react",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "Schema-driven form builder for React — powered by @formatica/core",
     "type": "module",
     "main": "./dist/formatica-react.umd.cjs",
