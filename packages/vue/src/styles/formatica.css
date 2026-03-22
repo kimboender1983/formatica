@@ -572,36 +572,5 @@
     background-color: color-mix(in srgb, var(--_primary) 20%, #1f2937) !important;
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   16. DARK MODE — media query variant (prefers-color-scheme)
-   For projects that use `darkMode: 'media'` in Tailwind config.
-   ═══════════════════════════════════════════════════════════════════ */
-
-@media (prefers-color-scheme: dark) {
-    .fc-form-builder:not(.light)
-        input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="hidden"]),
-    .fc-form-builder:not(.light) textarea,
-    .fc-form-builder:not(.light) select {
-        background-color: #1f2937;
-        color: #ffffff;
-        border-color: #4b5563;
-    }
-
-    .fc-form-builder:not(.light)
-        input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="hidden"])::placeholder,
-    .fc-form-builder:not(.light) textarea::placeholder {
-        color: #6b7280;
-    }
-
-    .fc-form-builder:not(.light) [role="combobox"] {
-        background-color: #1f2937;
-        color: #ffffff;
-        border-color: #4b5563;
-    }
-
-    .fc-form-builder:not(.light) button[type="reset"] {
-        background-color: #1f2937;
-        color: #d1d5db;
-        border-color: #4b5563;
-    }
-}
+/* Dark mode uses `.dark` class strategy only (Tailwind darkMode: 'class').
+   No @media (prefers-color-scheme) — the page controls dark mode, not the OS. */
