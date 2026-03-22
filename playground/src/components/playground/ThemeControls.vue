@@ -213,7 +213,7 @@
     >
       <div
         v-if="isOpen"
-        class="absolute right-0 top-full z-50 mt-2 w-80 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-5 shadow-xl"
+        class="fixed right-4 top-16 z-[100] mt-2 w-80 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-5 shadow-xl max-h-[80vh] overflow-y-auto"
       >
         <!-- Close button -->
         <div class="mb-4 flex items-center justify-between">
@@ -375,7 +375,7 @@
     <!-- Click-outside overlay -->
     <div
       v-if="isOpen"
-      class="fixed inset-0 z-40"
+      class="fixed inset-0 z-[99]"
       @click="close"
     />
   </div>

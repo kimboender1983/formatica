@@ -4,6 +4,8 @@
 
 import type { FormSchema } from "@formcraft/vue";
 import { contactSchema } from "./contactForm";
+import { eventRegistrationSchema } from "./eventRegistration";
+import { jobApplicationSchema } from "./jobApplication";
 import { registrationSchema } from "./registration";
 import { settingsSchema } from "./settingsPanel";
 import { surveySchema } from "./surveyWizard";
@@ -49,9 +51,27 @@ export const examples: ExampleEntry[] = [
         tags: ["Tabs", "Switches", "Nested groups"],
         schema: settingsSchema,
     },
+    {
+        id: "job-application",
+        title: "Job Application",
+        description:
+            "Structured job application form with grouped sections for personal info, professional background, and application details. Features rows, validation, phone input, and file upload.",
+        tags: ["Rows", "Groups", "Validation", "Phone"],
+        schema: jobApplicationSchema,
+    },
+    {
+        id: "event-registration",
+        title: "Event Registration",
+        description:
+            "Event registration form with attendee details, ticket selection, session checkboxes, and additional options like hotel accommodation and airport transfer.",
+        tags: ["Rows", "Groups", "Conditional", "Checkbox groups"],
+        schema: eventRegistrationSchema,
+    },
 ];
 
 export { contactSchema } from "./contactForm";
+export { eventRegistrationSchema } from "./eventRegistration";
+export { jobApplicationSchema } from "./jobApplication";
 // Re-export individual schemas for direct imports
 export { registrationSchema } from "./registration";
 export { settingsSchema } from "./settingsPanel";

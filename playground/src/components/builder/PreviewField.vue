@@ -1,11 +1,18 @@
 <script setup lang="ts">
     import type { FieldSchema } from "@formcraft/vue";
     import { isValidPhoneNumber } from "libphonenumber-js";
-    import { computed, ref } from "vue";
+    import { computed, inject, onMounted, reactive, ref } from "vue";
+    import {
+        type PreviewValidationStore,
+        PreviewValidationKey,
+    } from "../../composables/usePreviewValidation";
 
     const props = defineProps<{
         field: FieldSchema;
     }>();
+
+    // Shared validation store (provided by parent) or local fallback
+    const store = inject<PreviewValidationStore | null>(PreviewValidationKey, null);
 
     const switchStates = ref<Record<string, boolean>>({});
     const phoneDropdowns = ref<Record<string, boolean>>({});
@@ -13,13 +20,35 @@
     const tagsValues = ref<Record<string, string[]>>({});
     const tagsInputValues = ref<Record<string, string>>({});
     const tagsFocused = ref<Record<string, boolean>>({});
-    const fieldValues = ref<Record<string, string>>({});
-    const fieldErrors = ref<Record<string, string | null>>({});
-    const fieldTouched = ref<Record<string, boolean>>({});
+
+    // Use shared store when available, local reactive objects otherwise
+    const _localValues = reactive<Record<string, string>>({});
+    const _localErrors = reactive<Record<string, string | null>>({});
+    const _localTouched = reactive<Record<string, boolean>>({});
+
+    const fieldValues = computed(() => store?.values ?? _localValues);
+    const fieldErrors = computed(() => store?.errors ?? _localErrors);
+    const fieldTouched = computed(() => store?.touched ?? _localTouched);
 
     const fieldId = computed(() => `preview-${props.field.name}`);
 
-    function validateField(name: string, value: string) {
+    function isEmpty(value: unknown): boolean {
+        if (value === null || value === undefined) return true;
+        if (typeof value === "string") return value.trim() === "";
+        if (typeof value === "boolean") return !value;
+        if (Array.isArray(value)) return value.length === 0;
+        return false;
+    }
+
+    function getFieldValue(name: string): unknown {
+        // Check typed stores first, then fall back to string values
+        if (name in switchStates.value) return switchStates.value[name];
+        if (name in checkboxStates.value) return checkboxStates.value[name];
+        if (name in radioValues.value) return radioValues.value[name];
+        return fieldValues.value[name] ?? "";
+    }
+
+    function validateField(name: string) {
         const field = props.field;
         if (!field.rules) {
             fieldErrors.value[name] = null;
@@ -30,31 +59,33 @@
             : typeof field.rules === "string"
               ? field.rules.split("|")
               : [];
+        const value = getFieldValue(name);
+        const strValue = typeof value === "string" ? value : "";
         for (const rule of rules) {
             const ruleName = typeof rule === "string" ? rule.split(":")[0] : "";
-            if (ruleName === "required" && !value.trim()) {
+            if (ruleName === "required" && isEmpty(value)) {
                 fieldErrors.value[name] = "This field is required";
                 return;
             }
-            if (ruleName === "phone" && value.trim()) {
+            if (ruleName === "phone" && strValue.trim()) {
                 const country = getPhoneCountry(name);
-                const fullNumber = `${country.dial}${value}`;
+                const fullNumber = `${country.dial}${strValue}`;
                 if (!isValidPhoneNumber(fullNumber)) {
                     fieldErrors.value[name] = "Please enter a valid phone number";
                     return;
                 }
             }
-            if (ruleName === "email" && value.trim()) {
-                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+            if (ruleName === "email" && strValue.trim()) {
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(strValue)) {
                     fieldErrors.value[name] = "Please enter a valid email address";
                     return;
                 }
             }
-            if (ruleName === "minLength" && value.trim()) {
+            if (ruleName === "minLength" && strValue.trim()) {
                 const min = Number.parseInt(
                     typeof rule === "string" ? (rule.split(":")[1] ?? "0") : "0",
                 );
-                if (value.length < min) {
+                if (strValue.length < min) {
                     fieldErrors.value[name] = `Must be at least ${min} characters`;
                     return;
                 }
@@ -63,16 +94,41 @@
         fieldErrors.value[name] = null;
     }
 
+    // Register this field's validator with the shared store
+    onMounted(() => {
+        if (store) {
+            store.registerValidator(props.field.name, () => {
+                validateField(props.field.name);
+            });
+        }
+    });
+
     function onFieldBlur(name: string) {
         fieldTouched.value[name] = true;
-        validateField(name, fieldValues.value[name] ?? "");
+        validateField(name);
     }
 
     function onFieldInput(name: string, value: string) {
         fieldValues.value[name] = value;
         if (fieldTouched.value[name]) {
-            validateField(name, value);
+            validateField(name);
         }
+    }
+
+    // Checkbox / radio state
+    const checkboxStates = ref<Record<string, boolean>>({});
+    const radioValues = ref<Record<string, string>>({});
+
+    function onCheckboxChange(name: string, checked: boolean) {
+        checkboxStates.value[name] = checked;
+        fieldTouched.value[name] = true;
+        validateField(name);
+    }
+
+    function onRadioChange(name: string, value: string) {
+        radioValues.value[name] = value;
+        fieldTouched.value[name] = true;
+        validateField(name);
     }
 
     function addPreviewTag(fieldName: string, tag: string) {
@@ -196,9 +252,22 @@
     </select>
 
     <!-- Checkbox -->
-    <div v-else-if="field.type === 'checkbox'" class="flex items-center gap-2">
-      <input :id="fieldId" type="checkbox" class="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-primary-600 focus:ring-primary-500" />
-      <label :for="fieldId" class="text-sm text-gray-700 dark:text-gray-300 cursor-pointer">{{ field.label || field.name }}</label>
+    <div v-else-if="field.type === 'checkbox'">
+      <div class="flex items-center gap-2">
+        <input
+          :id="fieldId"
+          type="checkbox"
+          :checked="!!checkboxStates[field.name]"
+          :class="[
+            'h-4 w-4 rounded focus:ring-primary-500',
+            fieldTouched[field.name] && fieldErrors[field.name]
+              ? 'border-red-500 text-red-600'
+              : 'border-gray-300 dark:border-gray-600 text-primary-600',
+          ]"
+          @change="onCheckboxChange(field.name, ($event.target as HTMLInputElement).checked)"
+        />
+        <label :for="fieldId" class="text-sm text-gray-700 dark:text-gray-300 cursor-pointer">{{ field.label || field.name }}</label>
+      </div>
     </div>
 
     <!-- Switch -->
@@ -212,7 +281,7 @@
           'relative h-6 w-11 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500/30',
           switchStates[field.name] ? 'bg-primary-600' : 'bg-gray-300 dark:bg-gray-600',
         ]"
-        @click="switchStates[field.name] = !switchStates[field.name]"
+        @click="switchStates[field.name] = !switchStates[field.name]; fieldTouched[field.name] = true; validateField(field.name)"
       >
         <span
           :class="[
@@ -226,11 +295,24 @@
 
     <!-- Radio -->
     <fieldset v-else-if="field.type === 'radio'">
-      <legend class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+      <legend
+        :class="[
+          'block text-sm font-medium mb-1',
+          fieldTouched[field.name] && fieldErrors[field.name]
+            ? 'text-red-600 dark:text-red-400'
+            : 'text-gray-700 dark:text-gray-300',
+        ]"
+      >
         {{ field.label || field.name }}
         <span v-if="field.required" class="text-red-500">*</span>
       </legend>
-      <div :class="['flex gap-4', 'inline' in field && field.inline ? '' : 'flex-col gap-2']">
+      <div
+        :class="[
+          'flex gap-4 rounded-lg p-2 -m-2 transition-colors',
+          fieldTouched[field.name] && fieldErrors[field.name] ? 'bg-red-50 dark:bg-red-950/20' : '',
+          'inline' in field && field.inline ? '' : 'flex-col gap-2',
+        ]"
+      >
         <label
           v-if="Array.isArray(field.options)"
           v-for="(opt, oi) in field.options"
@@ -238,7 +320,15 @@
           :for="`${fieldId}-${oi}`"
           class="flex items-center gap-2 cursor-pointer"
         >
-          <input :id="`${fieldId}-${oi}`" type="radio" :name="field.name" :value="opt.value" class="h-4 w-4 border-gray-300 dark:border-gray-600 text-primary-600 focus:ring-primary-500" />
+          <input
+            :id="`${fieldId}-${oi}`"
+            type="radio"
+            :name="field.name"
+            :value="opt.value"
+            :checked="radioValues[field.name] === String(opt.value)"
+            class="h-4 w-4 border-gray-300 dark:border-gray-600 text-primary-600 focus:ring-primary-500"
+            @change="onRadioChange(field.name, String(opt.value))"
+          />
           <span class="text-sm text-gray-700 dark:text-gray-300">{{ opt.label }}</span>
         </label>
       </div>
