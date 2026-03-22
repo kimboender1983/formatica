@@ -361,9 +361,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@formatica/vue@npm:*, @formatica/vue@workspace:packages/formcraft":
+"@formatica/vue@npm:*, @formatica/vue@workspace:packages/vue":
   version: 0.0.0-use.local
-  resolution: "@formatica/vue@workspace:packages/formcraft"
+  resolution: "@formatica/vue@workspace:packages/vue"
   dependencies:
     "@formatica/core": "workspace:*"
     "@vitejs/plugin-vue": "npm:^5.0.0"

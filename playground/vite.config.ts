@@ -7,7 +7,7 @@ export default defineConfig({
     resolve: {
         alias: {
             "@formatica/core": resolve(__dirname, "../packages/core/src"),
-            "@formatica/vue": resolve(__dirname, "../packages/formcraft/src"),
+            "@formatica/vue": resolve(__dirname, "../packages/vue/src"),
             "@": resolve(__dirname, "src"),
         },
     },

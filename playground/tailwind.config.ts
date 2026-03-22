@@ -4,7 +4,7 @@ export default {
     content: [
         "./index.html",
         "./src/**/*.{vue,ts,tsx,js,jsx}",
-        "../packages/formcraft/src/**/*.{vue,ts,tsx,js,jsx}",
+        "../packages/vue/src/**/*.{vue,ts,tsx,js,jsx}",
     ],
     darkMode: "class",
     theme: {

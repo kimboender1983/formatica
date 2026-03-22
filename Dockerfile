@@ -6,7 +6,7 @@ WORKDIR /app
 
 COPY package.json yarn.lock .yarnrc.yml ./
 COPY packages/core/package.json packages/core/
-COPY packages/formcraft/package.json packages/formcraft/
+COPY packages/vue/package.json packages/vue/
 COPY packages/react/package.json packages/react/
 COPY playground/package.json playground/
 

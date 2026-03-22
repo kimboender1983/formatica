@@ -7,7 +7,7 @@ Schema-driven, fully-typed form builder for Vue and React. Define your forms wit
 | Package | Description |
 | --- | --- |
 | [`@formatica/core`](./packages/core) | Framework-agnostic form engine -- types, validation, parsing, conditions |
-| [`@formatica/vue`](./packages/formcraft) | Vue 3 form components and composables |
+| [`@formatica/vue`](./packages/vue) | Vue 3 form components and composables |
 | [`@formatica/react`](./packages/react) | React form components and hooks |
 
 ## Quick Start
