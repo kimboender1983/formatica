@@ -1,9 +1,11 @@
 <script setup lang="ts">
-    import { type Component, computed, onMounted, provide, toRef, watch } from "vue";
+    import { type Component, computed, onMounted, inject, provide, toRef, watch } from "vue";
     import { FormComponentsKey, hasFieldType, registerFieldType } from "../core/fieldRegistry";
     import { useForm } from "../core/useForm";
     import { useFormI18nContext } from "../core/useFormI18n";
     import { useTheme, useThemeClasses } from "../core/useTheme";
+    import { FormaticaKey } from "../plugin";
+    import type { FormaticaOptions } from "../plugin";
     import type { FormSchema, LayoutSchema, SchemaNode, ThemeConfig } from "@formatica/core";
     import CheckboxGroupInput from "./inputs/CheckboxGroupInput.vue";
     import CheckboxInput from "./inputs/CheckboxInput.vue";
@@ -21,28 +23,33 @@
     import TextInput from "./inputs/TextInput.vue";
     import LayoutRenderer from "./layout/LayoutRenderer.vue";
 
-    const props = withDefaults(
-        defineProps<{
-            schema: FormSchema;
-            layout?: LayoutSchema;
-            locale?: string;
-            fallbackLocale?: string;
-            modelValue?: Record<string, unknown>;
-            theme?: ThemeConfig;
-            /** Override built-in components or register custom field types per instance. */
-            components?: Record<string, Component>;
-        }>(),
-        {
-            locale: "en",
-            fallbackLocale: "en",
-        },
-    );
+    const props = defineProps<{
+        schema: FormSchema;
+        layout?: LayoutSchema;
+        locale?: string;
+        fallbackLocale?: string;
+        modelValue?: Record<string, unknown>;
+        theme?: ThemeConfig;
+        /** Override built-in components or register custom field types per instance. */
+        components?: Record<string, Component>;
+    }>();
 
     const emit = defineEmits<{
         submit: [values: Record<string, unknown>];
         error: [error: unknown];
         "update:modelValue": [values: Record<string, unknown>];
     }>();
+
+    // Inject global plugin options (if installed via createFormatica)
+    const globalOptions = inject<FormaticaOptions | undefined>(FormaticaKey, undefined);
+
+    // Merge: props override globals
+    const resolvedTheme = computed(() => props.theme ?? globalOptions?.theme);
+    const resolvedLocale = computed(() => props.locale ?? globalOptions?.locale ?? "en");
+    const resolvedFallbackLocale = computed(
+        () => props.fallbackLocale ?? globalOptions?.fallbackLocale ?? "en",
+    );
+    const resolvedComponents = computed(() => props.components ?? globalOptions?.components ?? {});
 
     // Register built-in field types (idempotent)
     const builtInTypes: [string, typeof TextInput][] = [
@@ -67,20 +74,17 @@
         }
     }
 
-    // Provide per-instance component overrides
-    provide(
-        FormComponentsKey,
-        computed(() => props.components ?? {}),
-    );
+    // Provide per-instance component overrides (merged with globals)
+    provide(FormComponentsKey, resolvedComponents);
 
-    // Initialize theme (provides FormThemeKey) — reactive to prop changes
-    useTheme(toRef(props, "theme"));
+    // Initialize theme (provides FormThemeKey) — reactive to prop/global changes
+    useTheme(resolvedTheme);
     const themeInstance = useThemeClasses();
 
     // Initialize form (provides FormContextKey and FormI18nKey)
     const form = useForm(props.schema, {
-        locale: props.locale,
-        fallbackLocale: props.fallbackLocale,
+        locale: resolvedLocale.value,
+        fallbackLocale: resolvedFallbackLocale.value,
     });
 
     // Sync external modelValue into form
@@ -113,13 +117,10 @@
         { deep: true },
     );
 
-    // Watch locale changes
-    watch(
-        () => props.locale,
-        (newLocale) => {
-            if (newLocale) form.setLocale(newLocale);
-        },
-    );
+    // Watch locale changes (resolved from prop or global)
+    watch(resolvedLocale, (newLocale) => {
+        if (newLocale) form.setLocale(newLocale);
+    });
 
     // I18n for form-level translations
     const i18n = useFormI18nContext();
@@ -127,36 +128,36 @@
     const formTitle = computed(() => {
         const translations = props.schema.translations;
         if (!translations) return "";
-        const loc = translations[props.locale];
+        const loc = translations[resolvedLocale.value];
         if (loc?.messages?.title) return loc.messages.title;
-        const fb = translations[props.fallbackLocale];
+        const fb = translations[resolvedFallbackLocale.value];
         return fb?.messages?.title ?? "";
     });
 
     const formDescription = computed(() => {
         const translations = props.schema.translations;
         if (!translations) return "";
-        const loc = translations[props.locale];
+        const loc = translations[resolvedLocale.value];
         if (loc?.messages?.description) return loc.messages.description;
-        const fb = translations[props.fallbackLocale];
+        const fb = translations[resolvedFallbackLocale.value];
         return fb?.messages?.description ?? "";
     });
 
     const submitLabel = computed(() => {
         const translations = props.schema.translations;
         if (!translations) return "Submit";
-        const loc = translations[props.locale];
+        const loc = translations[resolvedLocale.value];
         if (loc?.submit) return loc.submit;
-        const fb = translations[props.fallbackLocale];
+        const fb = translations[resolvedFallbackLocale.value];
         return fb?.submit ?? "Submit";
     });
 
     const resetLabel = computed(() => {
         const translations = props.schema.translations;
         if (!translations) return "Reset";
-        const loc = translations[props.locale];
+        const loc = translations[resolvedLocale.value];
         if (loc?.reset) return loc.reset;
-        const fb = translations[props.fallbackLocale];
+        const fb = translations[resolvedFallbackLocale.value];
         return fb?.reset ?? "Reset";
     });
 

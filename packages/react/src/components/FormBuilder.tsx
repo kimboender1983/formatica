@@ -4,6 +4,7 @@
 
 import type { ComponentType, FormEvent, ReactNode } from "react";
 import { useState } from "react";
+import { useFormaticaConfig } from "./FormaticaProvider";
 import type {
     DividerNode,
     FieldSchema,
@@ -718,12 +719,20 @@ export function FormBuilder({
     schema,
     onSubmit,
     onError,
-    locale = "en",
-    fallbackLocale = "en",
-    theme,
-    components,
+    locale: localeProp,
+    fallbackLocale: fallbackLocaleProp,
+    theme: themeProp,
+    components: componentsProp,
     className,
 }: FormBuilderProps) {
+    const globalConfig = useFormaticaConfig();
+
+    // Props override globals
+    const locale = localeProp ?? globalConfig.locale ?? "en";
+    const fallbackLocale = fallbackLocaleProp ?? globalConfig.fallbackLocale ?? "en";
+    const theme = themeProp ?? globalConfig.theme;
+    const components = componentsProp ?? globalConfig.components;
+
     const form = useForm(schema, { locale });
     const cssVars = buildCssVars(theme);
 

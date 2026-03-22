@@ -1,11 +1,16 @@
 import { resolve } from "node:path";
 import { copyFileSync, mkdirSync } from "node:fs";
 import vue from "@vitejs/plugin-vue";
+import dts from "vite-plugin-dts";
 import { defineConfig } from "vite";
 
 export default defineConfig({
     plugins: [
         vue(),
+        dts({
+            tsconfigPath: resolve(__dirname, "tsconfig.json"),
+            cleanVueFileName: true,
+        }),
         {
             name: "copy-formatica-css",
             closeBundle() {

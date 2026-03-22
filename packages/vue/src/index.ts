@@ -6,6 +6,10 @@
 export * from "@formatica/core";
 export type * from "@formatica/core";
 
+// Plugin
+export { createFormatica, FormaticaKey } from "./plugin";
+export type { FormaticaOptions } from "./plugin";
+
 // Components
 export { default as FormBuilder } from "./components/FormBuilder.vue";
 // Field registry

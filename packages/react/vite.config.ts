@@ -1,7 +1,13 @@
 import { resolve } from "node:path";
+import dts from "vite-plugin-dts";
 import { defineConfig } from "vite";
 
 export default defineConfig({
+    plugins: [
+        dts({
+            tsconfigPath: resolve(__dirname, "tsconfig.json"),
+        }),
+    ],
     build: {
         lib: {
             entry: resolve(__dirname, "src/index.ts"),

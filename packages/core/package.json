@@ -1,6 +1,6 @@
 {
     "name": "@formatica/core",
-    "version": "0.1.3",
+    "version": "0.2.0",
     "description": "Framework-agnostic schema-driven form engine — types, validation, parsing, conditions",
     "type": "module",
     "main": "./dist/formatica-core.umd.cjs",

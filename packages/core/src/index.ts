@@ -14,6 +14,10 @@ export { registerRule, unregisterRule, getRule, hasRule } from "./validation/rul
 // Conditions
 export { evaluateCondition } from "./conditions";
 
+// Global configuration
+export { configureFormatica, getFormaticaConfig } from "./config";
+export type { FormaticaCoreConfig } from "./config";
+
 // Utilities
 export { extractFields, isFieldNode } from "./extractFields";
 export { deepMerge } from "./utils/deepMerge";
