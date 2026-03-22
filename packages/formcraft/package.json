@@ -21,6 +21,17 @@
         "README.md",
         "LICENSE"
     ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "homepage": "",
+    "bugs": {
+        "url": ""
+    },
     "sideEffects": false,
     "scripts": {
         "build": "vite build",

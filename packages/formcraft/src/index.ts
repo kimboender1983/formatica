@@ -3,8 +3,8 @@
 // ---------------------------------------------------------------------------
 
 // Re-export everything from core
-export * from '@formatica/core'
-export type * from '@formatica/core'
+export * from "@formatica/core";
+export type * from "@formatica/core";
 
 // Components
 export { default as FormBuilder } from "./components/FormBuilder.vue";

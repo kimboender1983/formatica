@@ -8,14 +8,27 @@
     "types": "./dist/index.d.ts",
     "exports": {
         ".": {
+            "types": "./dist/index.d.ts",
             "import": "./dist/formatica-core.es.js",
-            "require": "./dist/formatica-core.umd.cjs",
-            "types": "./dist/index.d.ts"
+            "require": "./dist/formatica-core.umd.cjs"
         }
     },
     "files": [
-        "dist"
+        "dist",
+        "README.md",
+        "LICENSE"
     ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "homepage": "",
+    "bugs": {
+        "url": ""
+    },
     "sideEffects": false,
     "scripts": {
         "build": "vite build && tsc --emitDeclarationOnly --declaration --declarationDir dist",

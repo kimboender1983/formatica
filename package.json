@@ -12,7 +12,12 @@
         "lint:fix": "biome check --write .",
         "format": "biome format --write .",
         "typecheck": "yarn workspaces foreach -A run typecheck",
-        "test": "vitest --config packages/formcraft/vitest.config.ts"
+        "test": "vitest --config packages/formcraft/vitest.config.ts",
+        "publish:core": "yarn workspace @formatica/core npm publish --access public",
+        "publish:vue": "yarn workspace @formatica/vue npm publish --access public",
+        "publish:react": "yarn workspace @formatica/react npm publish --access public",
+        "publish:all": "yarn publish:core && yarn publish:vue && yarn publish:react",
+        "prepublish:all": "yarn build"
     },
     "devDependencies": {
         "@biomejs/biome": "^2.4.4",

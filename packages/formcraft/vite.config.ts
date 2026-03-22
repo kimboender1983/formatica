@@ -14,7 +14,11 @@ export default defineConfig({
         rollupOptions: {
             external: ["vue", "libphonenumber-js", "@formatica/core"],
             output: {
-                globals: { vue: "Vue", "libphonenumber-js": "libphonenumber", "@formatica/core": "FormaticaCore" },
+                globals: {
+                    vue: "Vue",
+                    "libphonenumber-js": "libphonenumber",
+                    "@formatica/core": "FormaticaCore",
+                },
             },
         },
         sourcemap: true,
