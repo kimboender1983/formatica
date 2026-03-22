@@ -81,6 +81,7 @@
     useTheme(resolvedTheme);
     const themeInstance = useThemeClasses();
 
+
     // Initialize form (provides FormContextKey and FormI18nKey)
     const form = useForm(props.schema, {
         locale: resolvedLocale.value,
