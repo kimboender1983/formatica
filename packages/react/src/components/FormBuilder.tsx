@@ -2,9 +2,6 @@
 // Formatica React – FormBuilder component (matches Vue FormBuilder styling)
 // ---------------------------------------------------------------------------
 
-import type { ComponentType, FormEvent, ReactNode } from "react";
-import { useState } from "react";
-import { useFormaticaConfig } from "./FormaticaProvider";
 import type {
     DividerNode,
     FieldSchema,
@@ -20,18 +17,21 @@ import type {
     ThemeConfig,
 } from "@formatica/core";
 import { isFieldNode } from "@formatica/core";
-import { useForm } from "../hooks/useForm";
+import type { ComponentType, FormEvent, ReactNode } from "react";
+import { useState } from "react";
 import type { FormInstance } from "../hooks/useForm";
+import { useForm } from "../hooks/useForm";
 import { FormContext } from "../hooks/useFormContext";
 import { BaseField } from "./BaseField";
-import { TextField } from "./fields/TextField";
-import { NumberField } from "./fields/NumberField";
-import { TextareaField } from "./fields/TextareaField";
-import { SelectField } from "./fields/SelectField";
+import { useFormaticaConfig } from "./FormaticaProvider";
 import { CheckboxField } from "./fields/CheckboxField";
+import { NumberField } from "./fields/NumberField";
 import { RadioField } from "./fields/RadioField";
-import { SwitchField } from "./fields/SwitchField";
+import { SelectField } from "./fields/SelectField";
 import { SliderField } from "./fields/SliderField";
+import { SwitchField } from "./fields/SwitchField";
+import { TextareaField } from "./fields/TextareaField";
+import { TextField } from "./fields/TextField";
 
 // ---------------------------------------------------------------------------
 // Types

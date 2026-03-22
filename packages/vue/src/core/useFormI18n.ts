@@ -2,9 +2,9 @@
 // Formatica – I18n composable
 // ---------------------------------------------------------------------------
 
-import { type InjectionKey, inject, provide, type Ref } from "vue";
 import type { FieldTranslations, FormTranslations } from "@formatica/core";
 import { titleCase } from "@formatica/core";
+import { type InjectionKey, inject, provide, type Ref } from "vue";
 
 // ---------------------------------------------------------------------------
 // Injection key

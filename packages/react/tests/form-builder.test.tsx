@@ -1,7 +1,7 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import type { FieldComponentProps, FormSchema } from "@formatica/react";
 import { FormBuilder } from "@formatica/react";
-import type { FormSchema, FieldComponentProps } from "@formatica/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 
 // ---------------------------------------------------------------------------
 // Schemas

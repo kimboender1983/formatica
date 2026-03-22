@@ -2,9 +2,9 @@
 // Formatica Vue – Plugin (global configuration)
 // ---------------------------------------------------------------------------
 
+import type { ThemeConfig } from "@formatica/core";
 import type { App, Component, InjectionKey, Plugin } from "vue";
 import { reactive } from "vue";
-import type { ThemeConfig } from "@formatica/core";
 import { registerFieldType } from "./core/fieldRegistry";
 
 export interface FormaticaOptions {

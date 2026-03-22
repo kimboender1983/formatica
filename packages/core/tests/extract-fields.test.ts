@@ -1,5 +1,5 @@
-import { extractFields, isFieldNode } from "@formatica/core";
 import type { SchemaNode } from "@formatica/core";
+import { extractFields, isFieldNode } from "@formatica/core";
 
 describe("extractFields", () => {
     it("extracts flat fields", () => {

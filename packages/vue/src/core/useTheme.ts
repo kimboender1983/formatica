@@ -2,18 +2,18 @@
 // Formatica – Theme composable
 // ---------------------------------------------------------------------------
 
+import type { ThemeConfig } from "@formatica/core";
 import {
     type ComputedRef,
-    type Ref,
     computed,
     type InjectionKey,
     inject,
+    isRef,
     provide,
+    type Ref,
     ref,
     toRef,
-    isRef,
 } from "vue";
-import type { ThemeConfig } from "@formatica/core";
 
 // ---------------------------------------------------------------------------
 // Injection key

@@ -1,8 +1,8 @@
 <script setup lang="ts">
+    import type { FieldBase } from "@formatica/core";
     import { computed, inject, ref } from "vue";
     import { type FormI18nInstance, FormI18nKey } from "../core/useFormI18n";
     import { FormThemeKey, type ThemeInstance } from "../core/useTheme";
-    import type { FieldBase } from "@formatica/core";
 
     const props = withDefaults(
         defineProps<{

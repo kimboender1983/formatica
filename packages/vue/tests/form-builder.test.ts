@@ -1,6 +1,6 @@
-import { mount } from "@vue/test-utils";
-import { FormBuilder } from "@formatica/vue";
 import type { FormSchema } from "@formatica/vue";
+import { FormBuilder } from "@formatica/vue";
+import { mount } from "@vue/test-utils";
 import { defineComponent, h, nextTick } from "vue";
 
 function simpleSchema(): FormSchema {

@@ -28,7 +28,9 @@
 
 /* --- Sizing, padding, border-radius --- */
 .fc-form-builder
-    input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="hidden"]),
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not(
+    [type="hidden"]
+),
 .fc-form-builder textarea,
 .fc-form-builder select {
     border-color: var(--_border);
@@ -37,7 +39,10 @@
     padding-right: var(--fc-input-padding-x, 0.75rem);
     padding-top: var(--fc-input-padding-y, 0.5rem);
     padding-bottom: var(--fc-input-padding-y, 0.5rem);
-    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s,
+        background-color 0.2s;
 }
 
 /* --- Border radius on buttons --- */
@@ -56,7 +61,9 @@
    ═══════════════════════════════════════════════════════════════════ */
 
 .fc-form-builder
-    input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="hidden"]):focus,
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not(
+    [type="hidden"]
+):focus,
 .fc-form-builder textarea:focus,
 .fc-form-builder select:focus {
     border-color: var(--_border-focus) !important;
@@ -288,7 +295,9 @@
 
 /* --- Input / Textarea / Select backgrounds & text --- */
 .dark .fc-form-builder
-    input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="hidden"]),
+    input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not(
+        [type="hidden"]
+    ),
 .dark .fc-form-builder textarea,
 .dark .fc-form-builder select {
     background-color: #1f2937; /* gray-800 */
@@ -298,7 +307,9 @@
 
 /* Also support dark class on the form-builder itself */
 .fc-form-builder.dark
-    input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="hidden"]),
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not(
+    [type="hidden"]
+),
 .fc-form-builder.dark textarea,
 .fc-form-builder.dark select {
     background-color: #1f2937;
@@ -308,7 +319,9 @@
 
 /* --- Placeholder text --- */
 .dark .fc-form-builder
-    input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="hidden"])::placeholder,
+    input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not(
+        [type="hidden"]
+    )::placeholder,
 .dark .fc-form-builder textarea::placeholder,
 .dark .fc-form-builder select::placeholder {
     color: #6b7280; /* gray-500 */

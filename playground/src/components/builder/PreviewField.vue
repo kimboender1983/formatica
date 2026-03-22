@@ -3,8 +3,8 @@
     import { isValidPhoneNumber } from "libphonenumber-js";
     import { computed, inject, onMounted, reactive, ref } from "vue";
     import {
-        type PreviewValidationStore,
         PreviewValidationKey,
+        type PreviewValidationStore,
     } from "../../composables/usePreviewValidation";
 
     const props = defineProps<{

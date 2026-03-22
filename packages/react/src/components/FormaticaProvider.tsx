@@ -2,9 +2,9 @@
 // Formatica React – Global configuration provider
 // ---------------------------------------------------------------------------
 
-import { createContext, useContext, type ReactNode } from "react";
 import type { ThemeConfig } from "@formatica/core";
 import type { ComponentType } from "react";
+import { createContext, type ReactNode, useContext } from "react";
 import type { FieldComponentProps } from "./FormBuilder";
 
 export interface FormaticaConfig {
@@ -24,9 +24,7 @@ export function FormaticaProvider({
     children: ReactNode;
 }) {
     return (
-        <FormaticaConfigContext.Provider value={config}>
-            {children}
-        </FormaticaConfigContext.Provider>
+        <FormaticaConfigContext.Provider value={config}>{children}</FormaticaConfigContext.Provider>
     );
 }
 

@@ -2,9 +2,9 @@
 // Formatica React – useForm hook
 // ---------------------------------------------------------------------------
 
-import { useCallback, useRef, useState } from "react";
 import type { FieldSchema, FormSchema } from "@formatica/core";
 import { evaluateCondition, extractFields, getRule } from "@formatica/core";
+import { useCallback, useRef, useState } from "react";
 
 // ---------------------------------------------------------------------------
 // Types

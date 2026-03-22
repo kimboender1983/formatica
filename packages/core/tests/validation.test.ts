@@ -1,5 +1,5 @@
-import { getRule, hasRule, registerRule, unregisterRule } from "@formatica/core";
 import type { FormContext } from "@formatica/core";
+import { getRule, hasRule, registerRule, unregisterRule } from "@formatica/core";
 
 const emptyCtx: FormContext = { values: {}, getFieldValue: () => undefined };
 

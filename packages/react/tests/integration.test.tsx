@@ -1,7 +1,7 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
-import { FormBuilder } from "@formatica/react";
 import type { FormSchema } from "@formatica/core";
+import { FormBuilder } from "@formatica/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 
 // ---------------------------------------------------------------------------
 // Full schema with multiple field types

@@ -2,14 +2,9 @@
 // Formatica – Barrel export
 // ---------------------------------------------------------------------------
 
+export type * from "@formatica/core";
 // Re-export everything from core
 export * from "@formatica/core";
-export type * from "@formatica/core";
-
-// Plugin
-export { createFormatica, FormaticaKey } from "./plugin";
-export type { FormaticaOptions } from "./plugin";
-
 // Components
 export { default as FormBuilder } from "./components/FormBuilder.vue";
 // Field registry
@@ -26,6 +21,9 @@ export type { UseFormOptions } from "./core/useForm";
 export { FormContextKey, useForm } from "./core/useForm";
 export type { FormI18nInstance, UseFormI18nOptions } from "./core/useFormI18n";
 export { FormI18nKey, useFormI18n, useFormI18nContext } from "./core/useFormI18n";
+export type { FormaticaOptions } from "./plugin";
+// Plugin
+export { createFormatica, FormaticaKey } from "./plugin";
 // Vue-specific types (from form.ts which depends on Vue)
 export type {
     FieldInstance,

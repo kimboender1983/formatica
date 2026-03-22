@@ -1,9 +1,9 @@
 import {
+    getFieldComponent,
+    getRegisteredFieldTypes,
+    hasFieldType,
     registerFieldType,
     unregisterFieldType,
-    getFieldComponent,
-    hasFieldType,
-    getRegisteredFieldTypes,
 } from "@formatica/vue";
 import { defineComponent, h } from "vue";
 

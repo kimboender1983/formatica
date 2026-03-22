@@ -1,5 +1,5 @@
-import { extractFields, isFieldNode } from "@formatica/vue";
 import type { SchemaNode } from "@formatica/vue";
+import { extractFields, isFieldNode } from "@formatica/vue";
 
 describe("extractFields", () => {
     it("extracts fields from a flat array", () => {

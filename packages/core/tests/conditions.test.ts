@@ -1,5 +1,5 @@
-import { evaluateCondition } from "@formatica/core";
 import type { Condition, ConditionGroup } from "@formatica/core";
+import { evaluateCondition } from "@formatica/core";
 
 describe("evaluateCondition", () => {
     describe("operators", () => {

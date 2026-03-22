@@ -3,8 +3,8 @@
 // ---------------------------------------------------------------------------
 
 import {
-    SchemaValidationError,
     parseFormSchema as coreParseFormSchema,
+    SchemaValidationError,
     setFieldTypeChecker,
 } from "@formatica/core";
 import { hasFieldType } from "./fieldRegistry";

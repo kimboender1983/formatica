@@ -2,6 +2,7 @@
 // Formatica Core – Schema parser & validator
 // ---------------------------------------------------------------------------
 
+import { extractFields } from "./extractFields";
 import type {
     Condition,
     ConditionGroup,
@@ -10,7 +11,6 @@ import type {
     SchemaNode,
 } from "./types/schema";
 import type { SchemaError } from "./types/validation";
-import { extractFields } from "./extractFields";
 
 // ---------------------------------------------------------------------------
 // Error class

@@ -2,9 +2,9 @@
 // Formatica – Validation composable
 // ---------------------------------------------------------------------------
 
-import { type Ref, ref } from "vue";
 import type { FieldSchema, FormSettings, ValidationRule } from "@formatica/core";
 import { evaluateCondition, getRule } from "@formatica/core";
+import { type Ref, ref } from "vue";
 import type { FormContext } from "../types/form";
 
 // ---------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 <script setup lang="ts">
     import type { FormSchema, ThemeConfig } from "@formatica/vue";
-    import { extractFields, FormBuilder } from "@formatica/vue";
+    import { extractFields, type FormBuilder } from "@formatica/vue";
     import { computed, ref, watch } from "vue";
 
     const props = withDefaults(
@@ -97,7 +97,9 @@
     // Poll form state periodically to catch blur/validation changes
     // (since we can't easily watch the internal form instance from outside)
     let stateInterval: ReturnType<typeof setInterval> | null = null;
+
     import { onMounted, onUnmounted } from "vue";
+
     onMounted(() => {
         stateInterval = setInterval(emitFormState, 200);
     });

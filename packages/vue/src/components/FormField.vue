@@ -1,9 +1,9 @@
 <script setup lang="ts">
+    import type { FieldSchema } from "@formatica/core";
+    import { evaluateCondition, extractFields } from "@formatica/core";
     import type { Component, ComputedRef } from "vue";
     import { computed, inject } from "vue";
     import { FormComponentsKey, getFieldComponent } from "../core/fieldRegistry";
-    import type { FieldSchema } from "@formatica/core";
-    import { evaluateCondition, extractFields } from "@formatica/core";
     import { FormContextKey } from "../core/useForm";
     import type { FormInstance } from "../types/form";
     import BaseField from "./BaseField.vue";

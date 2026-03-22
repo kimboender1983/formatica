@@ -1,4 +1,4 @@
-@import '../../../packages/vue/src/styles/formatica.css';
+@import "../../../packages/vue/src/styles/formatica.css";
 
 @tailwind base;
 @tailwind components;

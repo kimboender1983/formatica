@@ -2,9 +2,9 @@
 // Formatica – Main form composable
 // ---------------------------------------------------------------------------
 
-import { computed, type InjectionKey, provide, reactive, ref, watch } from "vue";
 import type { FieldSchema, FieldTranslations, FormSchema } from "@formatica/core";
 import { evaluateCondition, extractFields } from "@formatica/core";
+import { computed, type InjectionKey, provide, reactive, ref, watch } from "vue";
 import type { FieldInstance, FormContext, FormInstance, SubmitHandler } from "../types/form";
 import { createEventBus } from "./eventBus";
 import { useFormI18n } from "./useFormI18n";

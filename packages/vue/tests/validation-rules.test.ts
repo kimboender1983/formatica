@@ -1,4 +1,4 @@
-import { registerRule, getRule, hasRule, unregisterRule } from "@formatica/vue";
+import { getRule, hasRule, registerRule, unregisterRule } from "@formatica/vue";
 
 const dummyCtx = { values: {}, getFieldValue: () => undefined };
 

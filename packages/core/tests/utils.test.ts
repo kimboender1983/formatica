@@ -1,4 +1,4 @@
-import { deepMerge, titleCase, sanitizeHtml } from "@formatica/core";
+import { deepMerge, sanitizeHtml, titleCase } from "@formatica/core";
 
 describe("deepMerge", () => {
     it("merges flat objects", () => {

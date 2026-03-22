@@ -1,6 +1,5 @@
-import { useForm } from "@formatica/vue";
 import type { FormSchema } from "@formatica/vue";
-import { FormBuilder } from "@formatica/vue";
+import { FormBuilder, useForm } from "@formatica/vue";
 import { mount } from "@vue/test-utils";
 import { defineComponent, h } from "vue";
 

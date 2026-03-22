@@ -1,12 +1,12 @@
 <script setup lang="ts">
-    import { type Component, computed, onMounted, inject, provide, toRef, watch } from "vue";
+    import type { FormSchema, LayoutSchema, SchemaNode, ThemeConfig } from "@formatica/core";
+    import { type Component, computed, inject, onMounted, provide, toRef, watch } from "vue";
     import { FormComponentsKey, hasFieldType, registerFieldType } from "../core/fieldRegistry";
     import { useForm } from "../core/useForm";
     import { useFormI18nContext } from "../core/useFormI18n";
     import { useTheme, useThemeClasses } from "../core/useTheme";
-    import { FormaticaKey } from "../plugin";
     import type { FormaticaOptions } from "../plugin";
-    import type { FormSchema, LayoutSchema, SchemaNode, ThemeConfig } from "@formatica/core";
+    import { FormaticaKey } from "../plugin";
     import CheckboxGroupInput from "./inputs/CheckboxGroupInput.vue";
     import CheckboxInput from "./inputs/CheckboxInput.vue";
     import DateInput from "./inputs/DateInput.vue";
