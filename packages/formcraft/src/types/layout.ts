@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// FormCraft – Layout types
+// Formatica – Layout types
 // ---------------------------------------------------------------------------
 
 import type { Condition, ConditionGroup } from "./schema";

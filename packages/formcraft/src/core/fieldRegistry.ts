@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// FormCraft – Field component registry
+// Formatica – Field component registry
 // ---------------------------------------------------------------------------
 
 import type { Component, ComputedRef, InjectionKey } from "vue";
@@ -9,7 +9,7 @@ import type { Component, ComputedRef, InjectionKey } from "vue";
 // ---------------------------------------------------------------------------
 
 export const FormComponentsKey: InjectionKey<ComputedRef<Record<string, Component>>> =
-    Symbol("FormCraftComponents");
+    Symbol("FormaticaComponents");
 
 // ---------------------------------------------------------------------------
 // Registry

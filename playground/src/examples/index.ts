@@ -1,8 +1,8 @@
 // ---------------------------------------------------------------------------
-// FormCraft – Playground example schemas barrel export
+// Formatica – Playground example schemas barrel export
 // ---------------------------------------------------------------------------
 
-import type { FormSchema } from "@formcraft/vue";
+import type { FormSchema } from "@formatica/vue";
 import { contactSchema } from "./contactForm";
 import { eventRegistrationSchema } from "./eventRegistration";
 import { jobApplicationSchema } from "./jobApplication";

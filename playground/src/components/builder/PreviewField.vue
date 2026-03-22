@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import type { FieldSchema } from "@formcraft/vue";
+    import type { FieldSchema } from "@formatica/vue";
     import { isValidPhoneNumber } from "libphonenumber-js";
     import { computed, inject, onMounted, reactive, ref } from "vue";
     import {

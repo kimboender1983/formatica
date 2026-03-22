@@ -3,7 +3,7 @@
     // LayoutConfigurator – Right panel for editing a layout container
     // ---------------------------------------------------------------------------
 
-    import type { GroupLayout, LayoutNode, RowLayout } from "@formcraft/vue";
+    import type { GroupLayout, LayoutNode, RowLayout } from "@formatica/vue";
 
     interface Props {
         node: LayoutNode;

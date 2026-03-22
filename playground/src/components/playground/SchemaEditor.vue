@@ -1,6 +1,6 @@
 <script setup lang="ts">
-    import type { FormSchema, SchemaError } from "@formcraft/vue";
-    import { parseFormSchema, SchemaValidationError } from "@formcraft/vue";
+    import type { FormSchema, SchemaError } from "@formatica/vue";
+    import { parseFormSchema, SchemaValidationError } from "@formatica/vue";
     import { onMounted, ref, watch } from "vue";
 
     // ---------------------------------------------------------------------------

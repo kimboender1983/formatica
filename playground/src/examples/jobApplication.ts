@@ -1,8 +1,8 @@
 // ---------------------------------------------------------------------------
-// FormCraft – Example: Job Application Form (rows, groups, validation)
+// Formatica – Example: Job Application Form (rows, groups, validation)
 // ---------------------------------------------------------------------------
 
-import type { FormSchema } from "@formcraft/vue";
+import type { FormSchema } from "@formatica/vue";
 
 export const jobApplicationSchema: FormSchema = {
     id: "job-application",

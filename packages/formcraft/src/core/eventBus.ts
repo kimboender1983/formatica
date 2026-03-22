@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// FormCraft – Typed event bus
+// Formatica – Typed event bus
 // ---------------------------------------------------------------------------
 
 import type { FormEventName, FormEventPayloadMap } from "../types/form";

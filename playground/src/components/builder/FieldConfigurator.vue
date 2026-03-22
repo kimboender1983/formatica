@@ -3,7 +3,7 @@
     // FieldConfigurator – Right panel for editing a selected field
     // ---------------------------------------------------------------------------
 
-    import type { ConditionOperator, FieldSchema } from "@formcraft/vue";
+    import type { ConditionOperator, FieldSchema } from "@formatica/vue";
     import { computed, ref, watch } from "vue";
 
     interface Props {

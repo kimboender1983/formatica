@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import { extractFields, type FieldSchema, type SchemaNode } from "@formcraft/vue";
+    import { extractFields, type FieldSchema, type SchemaNode } from "@formatica/vue";
     import { computed, provide, ref, watch } from "vue";
     import { useRoute, useRouter } from "vue-router";
     import PreviewField from "../components/builder/PreviewField.vue";
@@ -88,7 +88,7 @@
     <div>
       <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">Examples</h1>
       <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
-        Browse pre-built form examples to see FormCraft in action.
+        Browse pre-built form examples to see Formatica in action.
       </p>
     </div>
 

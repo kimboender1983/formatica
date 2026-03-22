@@ -3,8 +3,8 @@
     // BuilderCanvas – Main drop zone for the form builder
     // ---------------------------------------------------------------------------
 
-    import type { FieldSchema, SchemaNode } from "@formcraft/vue";
-    import { extractFields, isFieldNode } from "@formcraft/vue";
+    import type { FieldSchema, SchemaNode } from "@formatica/vue";
+    import { extractFields, isFieldNode } from "@formatica/vue";
     import { computed, ref } from "vue";
 
     interface Props {
@@ -56,17 +56,17 @@
     const reorderIndicator = ref<{ idx: number; pos: "before" | "after" } | null>(null);
 
     function isReorderDrag(e: DragEvent): boolean {
-        return e.dataTransfer?.types.includes("application/formcraft-reorder") ?? false;
+        return e.dataTransfer?.types.includes("application/formatica-reorder") ?? false;
     }
 
     function onNodeDragStart(e: DragEvent, idx: number) {
         if (!e.dataTransfer) return;
         e.dataTransfer.effectAllowed = "move";
-        e.dataTransfer.setData("application/formcraft-reorder", String(idx));
+        e.dataTransfer.setData("application/formatica-reorder", String(idx));
         // If it's a field node, also mark it as a movable field
         const node = props.schemaNodes[idx];
         if (node && isFieldNode(node)) {
-            e.dataTransfer.setData("application/formcraft-move-field", node.name);
+            e.dataTransfer.setData("application/formatica-move-field", node.name);
         }
         reorderFrom.value = idx;
     }
@@ -126,7 +126,7 @@
             // New field from palette — insert at the indicated position
             rootDragOver.value = false;
             if (!e.dataTransfer) return;
-            const raw = e.dataTransfer.getData("application/formcraft-field");
+            const raw = e.dataTransfer.getData("application/formatica-field");
             if (!raw) return;
             const data = JSON.parse(raw) as { type: string; label: string; category: string };
             const insertAt = indicator
@@ -148,14 +148,14 @@
     );
 
     function isRowReorderDrag(e: DragEvent): boolean {
-        return e.dataTransfer?.types.includes("application/formcraft-row-reorder") ?? false;
+        return e.dataTransfer?.types.includes("application/formatica-row-reorder") ?? false;
     }
 
     function onRowFieldDragStart(e: DragEvent, rowIdx: number, colIdx: number) {
         if (!e.dataTransfer) return;
         e.dataTransfer.effectAllowed = "move";
         e.dataTransfer.setData(
-            "application/formcraft-row-reorder",
+            "application/formatica-row-reorder",
             JSON.stringify({ row: rowIdx, col: colIdx }),
         );
         // Also mark as movable field so it can be dropped on other containers or root
@@ -163,7 +163,7 @@
         if (row && row.type === "row") {
             const child = row.children[colIdx];
             if (child && isFieldNode(child)) {
-                e.dataTransfer.setData("application/formcraft-move-field", child.name);
+                e.dataTransfer.setData("application/formatica-move-field", child.name);
             }
         }
         rowReorderFrom.value = { row: rowIdx, col: colIdx };
@@ -223,11 +223,11 @@
     // ---------------------------------------------------------------------------
 
     function isPaletteDrag(e: DragEvent): boolean {
-        return e.dataTransfer?.types.includes("application/formcraft-field") ?? false;
+        return e.dataTransfer?.types.includes("application/formatica-field") ?? false;
     }
 
     function isMoveFieldDrag(e: DragEvent): boolean {
-        return e.dataTransfer?.types.includes("application/formcraft-move-field") ?? false;
+        return e.dataTransfer?.types.includes("application/formatica-move-field") ?? false;
     }
 
     function isAcceptableByContainer(e: DragEvent): boolean {
@@ -283,7 +283,7 @@
         if (!e.dataTransfer) return;
 
         // Moving an existing field to root level
-        const moveFieldName = e.dataTransfer.getData("application/formcraft-move-field");
+        const moveFieldName = e.dataTransfer.getData("application/formatica-move-field");
         if (moveFieldName && !isPaletteDrag(e)) {
             const { tree, field } = pluckFieldFromTree(props.schemaNodes, moveFieldName);
             if (!field) return;
@@ -298,7 +298,7 @@
         }
 
         // New field from palette
-        const raw = e.dataTransfer.getData("application/formcraft-field");
+        const raw = e.dataTransfer.getData("application/formatica-field");
         if (!raw) return;
         const data = JSON.parse(raw) as { type: string; label: string; category: string };
         emit("drop", data);
@@ -334,7 +334,7 @@
         if (!e.dataTransfer) return;
 
         // Moving an existing field into this row
-        const moveFieldName = e.dataTransfer.getData("application/formcraft-move-field");
+        const moveFieldName = e.dataTransfer.getData("application/formatica-move-field");
         if (moveFieldName) {
             const { tree, field } = pluckFieldFromTree(props.schemaNodes, moveFieldName);
             if (!field || !isFieldNode(field)) return;
@@ -349,7 +349,7 @@
         }
 
         // New field from palette
-        const raw = e.dataTransfer.getData("application/formcraft-field");
+        const raw = e.dataTransfer.getData("application/formatica-field");
         if (!raw) return;
         const data = JSON.parse(raw) as { type: string; label: string; category: string };
         if (data.category !== "field") return;
@@ -386,7 +386,7 @@
         if (!e.dataTransfer) return;
 
         // Moving an existing field into this group
-        const moveFieldName = e.dataTransfer.getData("application/formcraft-move-field");
+        const moveFieldName = e.dataTransfer.getData("application/formatica-move-field");
         if (moveFieldName) {
             const { tree, field } = pluckFieldFromTree(props.schemaNodes, moveFieldName);
             if (!field || !isFieldNode(field)) return;
@@ -400,7 +400,7 @@
         }
 
         // New field from palette
-        const raw = e.dataTransfer.getData("application/formcraft-field");
+        const raw = e.dataTransfer.getData("application/formatica-field");
         if (!raw) return;
         const data = JSON.parse(raw) as { type: string; label: string; category: string };
         if (data.category !== "field") return;

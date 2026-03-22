@@ -1,8 +1,8 @@
 // ---------------------------------------------------------------------------
-// FormCraft – Example: Settings Panel (tabs layout)
+// Formatica – Example: Settings Panel (tabs layout)
 // ---------------------------------------------------------------------------
 
-import type { FormSchema } from "@formcraft/vue";
+import type { FormSchema } from "@formatica/vue";
 
 export const settingsSchema: FormSchema = {
     id: "settings-panel",

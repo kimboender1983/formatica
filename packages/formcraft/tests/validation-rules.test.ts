@@ -1,4 +1,4 @@
-import { registerRule, getRule, hasRule, unregisterRule } from "@formcraft/vue";
+import { registerRule, getRule, hasRule, unregisterRule } from "@formatica/vue";
 
 const dummyCtx = { values: {}, getFieldValue: () => undefined };
 
@@ -41,7 +41,7 @@ describe("validation rules", () => {
 
         it("passes on false (treated as empty by isEmpty helper)", async () => {
             const rule = getRule("required")!;
-            // Note: in FormCraft, false is NOT considered empty by isEmpty(), so required passes
+            // Note: in Formatica, false is NOT considered empty by isEmpty(), so required passes
             // Actually checking the source: isEmpty only checks null/undefined/""/[],
             // so false passes required
             expect(await rule(false, {}, dummyCtx)).toBe(true);

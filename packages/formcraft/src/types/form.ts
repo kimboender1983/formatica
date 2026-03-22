@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// FormCraft – Form instance & context types
+// Formatica – Form instance & context types
 // ---------------------------------------------------------------------------
 
 import type { ComputedRef, Ref } from "vue";

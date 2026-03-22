@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// FormCraft – Simple HTML sanitizer for HtmlLayout content
+// Formatica – Simple HTML sanitizer for HtmlLayout content
 // ---------------------------------------------------------------------------
 
 /**

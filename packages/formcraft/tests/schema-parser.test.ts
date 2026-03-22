@@ -1,4 +1,4 @@
-import { parseFormSchema, SchemaValidationError } from "@formcraft/vue";
+import { parseFormSchema, SchemaValidationError } from "@formatica/vue";
 
 describe("parseFormSchema", () => {
     it("parses a valid simple schema", () => {

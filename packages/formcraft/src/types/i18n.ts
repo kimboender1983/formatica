@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// FormCraft – I18n types
+// Formatica – I18n types
 // ---------------------------------------------------------------------------
 
 // Canonical definitions – re-exported from schema.ts to avoid duplication.

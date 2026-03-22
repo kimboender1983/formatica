@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// FormCraft – Main form composable
+// Formatica – Main form composable
 // ---------------------------------------------------------------------------
 
 import { computed, type InjectionKey, provide, reactive, ref, watch } from "vue";
@@ -15,7 +15,7 @@ import { useValidation } from "./useValidation";
 // Injection key
 // ---------------------------------------------------------------------------
 
-export const FormContextKey: InjectionKey<FormInstance> = Symbol("FormCraftContext");
+export const FormContextKey: InjectionKey<FormInstance> = Symbol("FormaticaContext");
 
 // ---------------------------------------------------------------------------
 // Options

@@ -1,8 +1,8 @@
 // ---------------------------------------------------------------------------
-// FormCraft – Example: Contact Form (single-step with groups)
+// Formatica – Example: Contact Form (single-step with groups)
 // ---------------------------------------------------------------------------
 
-import type { FormSchema } from "@formcraft/vue";
+import type { FormSchema } from "@formatica/vue";
 
 export const contactSchema: FormSchema = {
     id: "contact-form",

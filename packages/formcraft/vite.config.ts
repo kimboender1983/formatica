@@ -7,9 +7,9 @@ export default defineConfig({
     build: {
         lib: {
             entry: resolve(__dirname, "src/index.ts"),
-            name: "FormCraft",
+            name: "Formatica",
             formats: ["es", "umd"],
-            fileName: (format) => `formcraft.${format === "es" ? "es.js" : "umd.cjs"}`,
+            fileName: (format) => `formatica.${format === "es" ? "es.js" : "umd.cjs"}`,
         },
         rollupOptions: {
             external: ["vue", "libphonenumber-js"],

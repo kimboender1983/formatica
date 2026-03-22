@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import type { FormSchema, ThemeConfig } from "@formcraft/vue";
+    import type { FormSchema, ThemeConfig } from "@formatica/vue";
     import { onMounted, onUnmounted, reactive, ref, watch } from "vue";
     import FormPreview from "../components/playground/FormPreview.vue";
     import OutputPanel from "../components/playground/OutputPanel.vue";

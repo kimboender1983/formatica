@@ -1,15 +1,15 @@
 {
-    "name": "@formcraft/vue",
+    "name": "@formatica/vue",
     "version": "0.1.0",
     "description": "Schema-driven, fully-typed form builder for Vue 3",
     "type": "module",
-    "main": "./dist/formcraft.umd.cjs",
-    "module": "./dist/formcraft.es.js",
+    "main": "./dist/formatica.umd.cjs",
+    "module": "./dist/formatica.es.js",
     "types": "./dist/index.d.ts",
     "exports": {
         ".": {
-            "import": "./dist/formcraft.es.js",
-            "require": "./dist/formcraft.umd.cjs",
+            "import": "./dist/formatica.es.js",
+            "require": "./dist/formatica.umd.cjs",
             "types": "./dist/index.d.ts"
         },
         "./types": {

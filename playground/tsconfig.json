@@ -3,7 +3,7 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "@formcraft/vue": ["../packages/formcraft/src"],
+            "@formatica/vue": ["../packages/formcraft/src"],
             "@/*": ["src/*"]
         },
         "types": ["vite/client"]

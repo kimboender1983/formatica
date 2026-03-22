@@ -1,8 +1,8 @@
 // ---------------------------------------------------------------------------
-// FormCraft – Example: Event Registration Form (groups, checkbox groups)
+// Formatica – Example: Event Registration Form (groups, checkbox groups)
 // ---------------------------------------------------------------------------
 
-import type { FormSchema } from "@formcraft/vue";
+import type { FormSchema } from "@formatica/vue";
 
 export const eventRegistrationSchema: FormSchema = {
     id: "event-registration",

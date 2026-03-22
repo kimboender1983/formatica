@@ -8,7 +8,7 @@
     const isDark = ref(false);
 
     onMounted(() => {
-        const stored = localStorage.getItem("formcraft-dark-mode");
+        const stored = localStorage.getItem("formatica-dark-mode");
         if (stored !== null) {
             isDark.value = stored === "true";
         } else {
@@ -18,7 +18,7 @@
     });
 
     watch(isDark, () => {
-        localStorage.setItem("formcraft-dark-mode", String(isDark.value));
+        localStorage.setItem("formatica-dark-mode", String(isDark.value));
         applyDarkClass();
     });
 
@@ -114,7 +114,7 @@
           </svg>
         </div>
         <span class="text-sm font-semibold text-gray-900 dark:text-white tracking-tight">
-          FormCraft
+          Formatica
         </span>
         <span class="ml-auto rounded-md bg-primary-100 dark:bg-primary-900/40 px-1.5 py-0.5 text-[10px] font-medium text-primary-700 dark:text-primary-300">
           v0.1
@@ -253,7 +253,7 @@
               <path d="M17.5 14v7" />
             </svg>
           </div>
-          <span class="text-sm font-semibold text-gray-900 dark:text-white">FormCraft</span>
+          <span class="text-sm font-semibold text-gray-900 dark:text-white">Formatica</span>
         </div>
       </header>
 

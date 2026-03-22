@@ -1,6 +1,6 @@
 <script setup lang="ts">
-    import type { SchemaNode } from "@formcraft/vue";
-    import { extractFields, isFieldNode } from "@formcraft/vue";
+    import type { SchemaNode } from "@formatica/vue";
+    import { extractFields, isFieldNode } from "@formatica/vue";
     import { computed } from "vue";
     import PreviewField from "./PreviewField.vue";
 

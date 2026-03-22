@@ -129,8 +129,8 @@
 
     const quickStartCode = `<script setup lang='ts'>
 import { ref } from 'vue'
-import { FormBuilder } from '@formcraft/vue'
-import type { FormSchema } from '@formcraft/vue'
+import { FormBuilder } from '@formatica/vue'
+import type { FormSchema } from '@formatica/vue'
 
 const schema: FormSchema = {
   fields: [
@@ -243,7 +243,7 @@ function onSubmit(values: Record<string, unknown>) {
 
     const vModelCode = `<script setup lang='ts'>
 import { ref, watch } from 'vue'
-import { FormBuilder } from '@formcraft/vue'
+import { FormBuilder } from '@formatica/vue'
 
 const formValues = ref<Record<string, unknown>>({})
 
@@ -262,7 +262,7 @@ watch(formValues, (values) => {
 
     const submitLoadingCode = `<script setup lang='ts'>
 import { ref } from 'vue'
-import { FormBuilder } from '@formcraft/vue'
+import { FormBuilder } from '@formatica/vue'
 
 const isLoading = ref(false)
 
@@ -291,8 +291,8 @@ async function onSubmit(values: Record<string, unknown>) {
 </template>`;
 
     const useFormCode = `<script setup lang='ts'>
-import { useForm } from '@formcraft/vue'
-import type { FormSchema } from '@formcraft/vue'
+import { useForm } from '@formatica/vue'
+import type { FormSchema } from '@formatica/vue'
 
 const schema: FormSchema = {
   fields: [
@@ -343,8 +343,8 @@ form.submit(async (values) => {
 <FormBuilder :schema='schema' locale='nl' />`;
 
     const customFieldsPerInstanceCode = `<script setup lang='ts'>
-import { FormBuilder } from '@formcraft/vue'
-import type { FormSchema } from '@formcraft/vue'
+import { FormBuilder } from '@formatica/vue'
+import type { FormSchema } from '@formatica/vue'
 import MyCustomTextInput from './MyCustomTextInput.vue'
 import MyRatingInput from './MyRatingInput.vue'
 
@@ -401,8 +401,8 @@ const emit = defineEmits<{
 </template>`;
 
     const themingCode = `<script setup lang='ts'>
-import { FormBuilder } from '@formcraft/vue'
-import type { ThemeConfig } from '@formcraft/vue'
+import { FormBuilder } from '@formatica/vue'
+import type { ThemeConfig } from '@formatica/vue'
 
 const theme: ThemeConfig = {
   name: 'my-theme',
@@ -443,14 +443,14 @@ const theme: ThemeConfig = {
       <div class="mx-auto max-w-3xl space-y-14">
         <div>
           <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">Documentation</h1>
-          <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Complete API reference for @formcraft/vue.</p>
+          <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Complete API reference for @formatica/vue.</p>
         </div>
 
         <!-- ─── INSTALLATION ─────────────────────────────── -->
-        <DocSection id="installation" title="Installation" description="Install FormCraft and its peer dependency.">
-          <DocCodeBlock language="bash" code="npm install @formcraft/vue libphonenumber-js
+        <DocSection id="installation" title="Installation" description="Install Formatica and its peer dependency.">
+          <DocCodeBlock language="bash" code="npm install @formatica/vue libphonenumber-js
 # or
-yarn add @formcraft/vue libphonenumber-js" />
+yarn add @formatica/vue libphonenumber-js" />
           <p class="mt-3 text-xs text-gray-500 dark:text-gray-400">
             <code class="text-[11px] bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">libphonenumber-js</code> is required for the phone field type. All other field types have zero external dependencies.
           </p>
@@ -624,7 +624,7 @@ type SchemaNode =
           <DocCodeBlock language="vue" :code="customFieldsPerInstanceCode" />
 
           <h4 class="mt-6 mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">Option 2: Global registry</h4>
-          <DocCodeBlock language="typescript" code="import { registerFieldType } from '@formcraft/vue'
+          <DocCodeBlock language="typescript" code="import { registerFieldType } from '@formatica/vue'
 import MyRatingInput from './MyRatingInput.vue'
 
 // Call once at app startup (e.g. in main.ts)
@@ -644,7 +644,7 @@ registerFieldType('rating', MyRatingInput)
 
         <!-- ─── CUSTOM RULES ─────────────────────────────── -->
         <DocSection id="custom-rules" title="Custom Validation Rules" description="Register custom validation rules globally.">
-          <DocCodeBlock language="typescript" code="import { registerRule } from '@formcraft/vue'
+          <DocCodeBlock language="typescript" code="import { registerRule } from '@formatica/vue'
 
 // Sync rule
 registerRule('postalCode', (value) => {
@@ -670,13 +670,13 @@ registerRule('uniqueEmail', async (value) => {
         <DocSection id="theming" title="Theming" description="Pass a theme config to customize colors, spacing, and component classes.">
           <DocCodeBlock language="vue" :code="themingCode" />
           <p class="mt-3 text-xs text-gray-500 dark:text-gray-400">
-            FormCraft uses Tailwind CSS classes. Your Tailwind config must include the library's dist files in <code class="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-[11px]">content</code> to scan for classes:
+            Formatica uses Tailwind CSS classes. Your Tailwind config must include the library's dist files in <code class="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-[11px]">content</code> to scan for classes:
           </p>
           <DocCodeBlock language="typescript" code="// tailwind.config.ts
 export default {
   content: [
     './src/**/*.{vue,ts}',
-    './node_modules/@formcraft/vue/dist/**/*.js',
+    './node_modules/@formatica/vue/dist/**/*.js',
   ],
 }" />
         </DocSection>

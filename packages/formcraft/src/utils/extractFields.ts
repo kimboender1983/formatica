@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// FormCraft – Utility to extract field schemas from a unified schema tree
+// Formatica – Utility to extract field schemas from a unified schema tree
 // ---------------------------------------------------------------------------
 
 import type { FieldSchema, SchemaNode } from "../types/schema";

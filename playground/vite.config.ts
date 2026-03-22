@@ -6,7 +6,7 @@ export default defineConfig({
     plugins: [vue()],
     resolve: {
         alias: {
-            "@formcraft/vue": resolve(__dirname, "../packages/formcraft/src"),
+            "@formatica/vue": resolve(__dirname, "../packages/formcraft/src"),
             "@": resolve(__dirname, "src"),
         },
     },

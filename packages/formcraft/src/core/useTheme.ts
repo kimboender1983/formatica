@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// FormCraft – Theme composable
+// Formatica – Theme composable
 // ---------------------------------------------------------------------------
 
 import { type ComputedRef, computed, type InjectionKey, inject, provide } from "vue";
@@ -9,7 +9,7 @@ import type { ThemeConfig } from "../types/theme";
 // Injection key
 // ---------------------------------------------------------------------------
 
-export const FormThemeKey: InjectionKey<ThemeInstance> = Symbol("FormCraftTheme");
+export const FormThemeKey: InjectionKey<ThemeInstance> = Symbol("FormaticaTheme");
 
 // ---------------------------------------------------------------------------
 // Types

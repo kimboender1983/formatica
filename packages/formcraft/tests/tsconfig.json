@@ -3,7 +3,7 @@
     "compilerOptions": {
         "types": ["vitest/globals"],
         "paths": {
-            "@formcraft/vue": ["../src/index.ts"]
+            "@formatica/vue": ["../src/index.ts"]
         }
     },
     "include": ["./**/*.ts"]

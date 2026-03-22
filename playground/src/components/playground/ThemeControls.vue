@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import type { ThemeConfig } from "@formcraft/vue";
+    import type { ThemeConfig } from "@formatica/vue";
     import { computed, ref } from "vue";
 
     // ---------------------------------------------------------------------------

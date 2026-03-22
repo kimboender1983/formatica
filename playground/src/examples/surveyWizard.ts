@@ -1,8 +1,8 @@
 // ---------------------------------------------------------------------------
-// FormCraft – Example: Survey Wizard (multi-step with branching)
+// Formatica – Example: Survey Wizard (multi-step with branching)
 // ---------------------------------------------------------------------------
 
-import type { FormSchema } from "@formcraft/vue";
+import type { FormSchema } from "@formatica/vue";
 
 export const surveySchema: FormSchema = {
     id: "survey-wizard",

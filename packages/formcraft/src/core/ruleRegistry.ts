@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// FormCraft – Validation rule registry
+// Formatica – Validation rule registry
 // ---------------------------------------------------------------------------
 
 import type { RuleFn } from "../types/validation";

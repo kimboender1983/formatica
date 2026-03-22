@@ -4,7 +4,7 @@ import {
     getFieldComponent,
     hasFieldType,
     getRegisteredFieldTypes,
-} from "@formcraft/vue";
+} from "@formatica/vue";
 import { defineComponent, h } from "vue";
 
 const DummyComponent = defineComponent({

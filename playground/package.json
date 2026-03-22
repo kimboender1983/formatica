@@ -1,5 +1,5 @@
 {
-    "name": "formcraft-playground",
+    "name": "formatica-playground",
     "private": true,
     "type": "module",
     "scripts": {
@@ -8,7 +8,7 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "@formcraft/vue": "*",
+        "@formatica/vue": "*",
         "libphonenumber-js": "^1.12.40",
         "vue": "^3.4.0",
         "vue-router": "^4.3.0"

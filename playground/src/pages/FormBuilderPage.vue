@@ -3,8 +3,8 @@
     // FormBuilderPage – Visual drag-and-drop form builder
     // ---------------------------------------------------------------------------
 
-    import type { FieldSchema, FormSchema, SchemaNode } from "@formcraft/vue";
-    import { extractFields, isFieldNode } from "@formcraft/vue";
+    import type { FieldSchema, FormSchema, SchemaNode } from "@formatica/vue";
+    import { extractFields, isFieldNode } from "@formatica/vue";
     import { computed, ref } from "vue";
     import BuilderCanvas from "../components/builder/BuilderCanvas.vue";
     import BuilderPreview from "../components/builder/BuilderPreview.vue";

@@ -5,9 +5,9 @@
         "playground"
     ],
     "scripts": {
-        "dev": "yarn workspace formcraft-playground dev",
-        "build": "yarn workspace @formcraft/vue build",
-        "build:playground": "yarn workspace formcraft-playground build",
+        "dev": "yarn workspace formatica-playground dev",
+        "build": "yarn workspace @formatica/vue build",
+        "build:playground": "yarn workspace formatica-playground build",
         "lint": "biome check .",
         "lint:fix": "biome check --write .",
         "format": "biome format --write .",

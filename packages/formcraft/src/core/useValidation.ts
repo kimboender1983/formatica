@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// FormCraft – Validation composable
+// Formatica – Validation composable
 // ---------------------------------------------------------------------------
 
 import { type Ref, ref } from "vue";

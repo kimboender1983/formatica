@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// FormCraft – I18n composable
+// Formatica – I18n composable
 // ---------------------------------------------------------------------------
 
 import { type InjectionKey, inject, provide, type Ref } from "vue";
@@ -10,7 +10,7 @@ import { titleCase } from "../utils/titleCase";
 // Injection key
 // ---------------------------------------------------------------------------
 
-export const FormI18nKey: InjectionKey<FormI18nInstance> = Symbol("FormCraftI18n");
+export const FormI18nKey: InjectionKey<FormI18nInstance> = Symbol("FormaticaI18n");
 
 // ---------------------------------------------------------------------------
 // Types

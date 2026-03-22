@@ -3,7 +3,7 @@
     // SchemaExport – Modal showing generated schema as JSON or TypeScript
     // ---------------------------------------------------------------------------
 
-    import type { FormSchema } from "@formcraft/vue";
+    import type { FormSchema } from "@formatica/vue";
     import { computed, ref } from "vue";
 
     interface Props {
@@ -24,7 +24,7 @@
 
     const tsOutput = computed(() => {
         const schemaStr = JSON.stringify(props.schema, null, 2);
-        return `import type { FormSchema } from '@formcraft/vue';
+        return `import type { FormSchema } from '@formatica/vue';
 
 const schema: FormSchema = ${schemaStr};
 
@@ -56,7 +56,7 @@ export { schema };`;
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
-        a.download = "formcraft-schema.json";
+        a.download = "formatica-schema.json";
         a.click();
         URL.revokeObjectURL(url);
     }

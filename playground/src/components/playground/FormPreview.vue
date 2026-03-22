@@ -1,6 +1,6 @@
 <script setup lang="ts">
-    import type { FormSchema, ThemeConfig } from "@formcraft/vue";
-    import { extractFields, FormBuilder } from "@formcraft/vue";
+    import type { FormSchema, ThemeConfig } from "@formatica/vue";
+    import { extractFields, FormBuilder } from "@formatica/vue";
     import { computed, ref, watch } from "vue";
 
     // ---------------------------------------------------------------------------
@@ -69,7 +69,7 @@
     }
 
     function handleSubmit(values: Record<string, unknown>) {
-        console.log("[FormCraft Playground] Submit:", values);
+        console.log("[Formatica Playground] Submit:", values);
         emit("submit", values);
     }
 

@@ -11,7 +11,7 @@ export default defineConfig({
     },
     resolve: {
         alias: {
-            "@formcraft/vue": new URL("./src/index.ts", import.meta.url).pathname,
+            "@formatica/vue": new URL("./src/index.ts", import.meta.url).pathname,
         },
     },
 });

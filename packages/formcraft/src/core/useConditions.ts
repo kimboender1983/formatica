@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// FormCraft – Condition evaluation
+// Formatica – Condition evaluation
 // ---------------------------------------------------------------------------
 
 import type { Condition, ConditionGroup, ConditionOperator } from "../types/schema";

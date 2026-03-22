@@ -34,7 +34,7 @@
     function onDragStart(e: DragEvent, item: PaletteItem) {
         if (!e.dataTransfer) return;
         e.dataTransfer.effectAllowed = "copy";
-        e.dataTransfer.setData("application/formcraft-field", JSON.stringify(item));
+        e.dataTransfer.setData("application/formatica-field", JSON.stringify(item));
     }
 </script>
 

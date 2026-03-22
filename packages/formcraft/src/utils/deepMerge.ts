@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// FormCraft – Deep merge utility
+// Formatica – Deep merge utility
 // ---------------------------------------------------------------------------
 
 type PlainObject = Record<string, unknown>;

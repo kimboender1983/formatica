@@ -1,8 +1,8 @@
 // ---------------------------------------------------------------------------
-// FormCraft – Example: User Registration (multi-step)
+// Formatica – Example: User Registration (multi-step)
 // ---------------------------------------------------------------------------
 
-import type { FormSchema } from "@formcraft/vue";
+import type { FormSchema } from "@formatica/vue";
 
 export const registrationSchema: FormSchema = {
     id: "registration",
