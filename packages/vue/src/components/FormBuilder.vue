@@ -81,6 +81,42 @@
     useTheme(resolvedTheme);
     const themeInstance = useThemeClasses();
 
+    // Build CSS variables directly from resolved theme for the form element
+    // This ensures they're always applied even if provide/inject chain has issues
+    function camelToKebab(str: string): string {
+        return str.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
+    }
+
+    const formCssVars = computed<Record<string, string>>(() => {
+        const theme = resolvedTheme.value;
+        if (!theme) return {};
+        const vars: Record<string, string> = {};
+        if (theme.colors) {
+            for (const [key, value] of Object.entries(theme.colors)) {
+                if (value) vars[`--fc-color-${camelToKebab(key)}`] = value;
+            }
+        }
+        if (theme.borders) {
+            for (const [key, value] of Object.entries(theme.borders)) {
+                if (value) vars[`--fc-border-${camelToKebab(key)}`] = value;
+            }
+        }
+        if (theme.spacing) {
+            for (const [key, value] of Object.entries(theme.spacing)) {
+                if (value) vars[`--fc-${camelToKebab(key)}`] = value;
+            }
+        }
+        if (theme.typography) {
+            for (const [key, value] of Object.entries(theme.typography)) {
+                if (value) vars[`--fc-${camelToKebab(key)}`] = value;
+            }
+        }
+        if (theme.cssVars) {
+            Object.assign(vars, theme.cssVars);
+        }
+        return vars;
+    });
+
 
     // Initialize form (provides FormContextKey and FormI18nKey)
     const form = useForm(props.schema, {
@@ -191,7 +227,7 @@
 <template>
   <form
     :class="[themeInstance.classes.value.form, 'fc-form-builder']"
-    :style="themeInstance.cssVars.value"
+    :style="formCssVars"
     novalidate
     @submit.prevent="onSubmit"
     @reset.prevent="onReset"
