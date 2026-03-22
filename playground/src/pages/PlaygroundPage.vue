@@ -179,6 +179,46 @@
         });
     }
 
+    function onFormState(state: {
+        values: Record<string, unknown>;
+        errors: Record<string, string[]>;
+        touched: Record<string, boolean>;
+        dirty: Record<string, boolean>;
+        isValid: boolean;
+        isDirty: boolean;
+        isSubmitting: boolean;
+        submitCount: number;
+    }) {
+        // Sync values
+        for (const k of Object.keys(formValues)) {
+            if (!(k in state.values)) delete formValues[k];
+        }
+        Object.assign(formValues, state.values);
+
+        // Sync errors
+        for (const k of Object.keys(formErrors)) {
+            if (!(k in state.errors)) delete formErrors[k];
+        }
+        Object.assign(formErrors, state.errors);
+
+        // Sync touched
+        for (const k of Object.keys(formTouched)) {
+            if (!(k in state.touched)) delete formTouched[k];
+        }
+        Object.assign(formTouched, state.touched);
+
+        // Sync dirty
+        for (const k of Object.keys(formDirty)) {
+            if (!(k in state.dirty)) delete formDirty[k];
+        }
+        Object.assign(formDirty, state.dirty);
+
+        isValid.value = state.isValid;
+        isDirty.value = state.isDirty;
+        isSubmitting.value = state.isSubmitting;
+        submitCount.value = state.submitCount;
+    }
+
     function onLocaleChange(newLocale: string) {
         locale.value = newLocale;
     }
@@ -333,6 +373,7 @@
           :locale="locale"
           :theme="theme"
           @submit="onFormSubmit"
+          @form-state="onFormState"
           @locale-change="onLocaleChange"
         />
       </div>
@@ -385,6 +426,7 @@
           :locale="locale"
           :theme="theme"
           @submit="onFormSubmit"
+          @form-state="onFormState"
           @locale-change="onLocaleChange"
         />
       </div>

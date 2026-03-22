@@ -109,9 +109,10 @@
       :aria-disabled="disabled || undefined"
       :class="[
         'flex flex-col items-center justify-center rounded-lg border-2 border-dashed p-6 text-center transition-colors duration-200',
-        isDragOver ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-gray-50',
+        !isDragOver ? 'border-gray-300 bg-gray-50' : '',
         disabled ? 'pointer-events-none' : 'cursor-pointer hover:border-gray-400',
       ]"
+      :style="isDragOver ? { borderColor: 'var(--fc-color-primary, #3b82f6)', backgroundColor: 'color-mix(in srgb, var(--fc-color-primary, #3b82f6) 8%, white)' } : {}"
       @click="openPicker"
       @keydown.enter="openPicker"
       @keydown.space.prevent="openPicker"
@@ -135,7 +136,7 @@
         />
       </svg>
       <p class="text-sm text-gray-600">
-        Drop files here or <span class="font-medium text-blue-500">browse</span>
+        Drop files here or <span class="font-medium" :style="{ color: 'var(--fc-color-primary, #3b82f6)' }">browse</span>
       </p>
       <p v-if="accept" class="mt-1 text-xs text-gray-400">Accepted: {{ accept }}</p>
     </div>

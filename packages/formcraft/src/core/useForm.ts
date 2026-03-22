@@ -3,11 +3,10 @@
 // ---------------------------------------------------------------------------
 
 import { computed, type InjectionKey, provide, reactive, ref, watch } from "vue";
+import type { FieldSchema, FieldTranslations, FormSchema } from "@formatica/core";
+import { evaluateCondition, extractFields } from "@formatica/core";
 import type { FieldInstance, FormContext, FormInstance, SubmitHandler } from "../types/form";
-import type { FieldSchema, FieldTranslations, FormSchema } from "../types/schema";
-import { extractFields } from "../utils/extractFields";
 import { createEventBus } from "./eventBus";
-import { evaluateCondition } from "./useConditions";
 import { useFormI18n } from "./useFormI18n";
 import { useValidation } from "./useValidation";
 

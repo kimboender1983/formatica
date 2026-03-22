@@ -24,6 +24,10 @@ const routes: RouteRecordRaw[] = [
     },
     {
         path: "/docs",
+        redirect: "/docs/vue",
+    },
+    {
+        path: "/docs/:platform",
         name: "docs",
         component: () => import("./pages/DocsPage.vue"),
     },

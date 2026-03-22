@@ -58,9 +58,10 @@
       tabindex="0"
       :class="[
         'relative inline-flex h-6 w-11 shrink-0 rounded-full border-2 border-transparent transition-colors duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]',
-        modelValue ? 'bg-blue-500' : 'bg-gray-300',
+        !modelValue ? 'bg-gray-300' : '',
         disabled ? 'pointer-events-none' : 'focus:outline-none focus:ring-2 focus:ring-blue-500/20',
       ]"
+      :style="modelValue ? { backgroundColor: 'var(--fc-color-primary, #3b82f6)' } : {}"
       @click="toggle"
       @keydown="onKeydown"
     >

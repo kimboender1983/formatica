@@ -2,8 +2,18 @@
 // Formatica – Theme composable
 // ---------------------------------------------------------------------------
 
-import { type ComputedRef, computed, type InjectionKey, inject, provide } from "vue";
-import type { ThemeConfig } from "../types/theme";
+import {
+    type ComputedRef,
+    type Ref,
+    computed,
+    type InjectionKey,
+    inject,
+    provide,
+    ref,
+    toRef,
+    isRef,
+} from "vue";
+import type { ThemeConfig } from "@formatica/core";
 
 // ---------------------------------------------------------------------------
 // Injection key
@@ -96,11 +106,13 @@ const defaultTheme: ThemeConfig = {
 // Composable
 // ---------------------------------------------------------------------------
 
-export function useTheme(config?: ThemeConfig): ThemeInstance {
-    const theme = config ?? defaultTheme;
+export function useTheme(config?: ThemeConfig | Ref<ThemeConfig | undefined>): ThemeInstance {
+    const themeRef: Ref<ThemeConfig> = isRef(config)
+        ? computed(() => config.value ?? defaultTheme)
+        : ref(config ?? defaultTheme);
 
     const classes = computed<ThemeClasses>(() => {
-        const comps = theme.components ?? {};
+        const comps = themeRef.value.components ?? {};
         return {
             form: comps.form ?? "fc-form",
             field: comps.field ?? "fc-field",
@@ -117,60 +129,48 @@ export function useTheme(config?: ThemeConfig): ThemeInstance {
     });
 
     const cssVars = computed<Record<string, string>>(() => {
+        const t = themeRef.value;
         const vars: Record<string, string> = {};
 
-        // Map color tokens
-        if (theme.colors) {
-            for (const [key, value] of Object.entries(theme.colors)) {
+        if (t.colors) {
+            for (const [key, value] of Object.entries(t.colors)) {
                 if (value) vars[`--fc-color-${camelToKebab(key)}`] = value;
             }
         }
-
-        // Map typography tokens
-        if (theme.typography) {
-            for (const [key, value] of Object.entries(theme.typography)) {
+        if (t.typography) {
+            for (const [key, value] of Object.entries(t.typography)) {
                 if (value) vars[`--fc-${camelToKebab(key)}`] = value;
             }
         }
-
-        // Map spacing tokens
-        if (theme.spacing) {
-            for (const [key, value] of Object.entries(theme.spacing)) {
+        if (t.spacing) {
+            for (const [key, value] of Object.entries(t.spacing)) {
                 if (value) vars[`--fc-${camelToKebab(key)}`] = value;
             }
         }
-
-        // Map border tokens
-        if (theme.borders) {
-            for (const [key, value] of Object.entries(theme.borders)) {
+        if (t.borders) {
+            for (const [key, value] of Object.entries(t.borders)) {
                 if (value) vars[`--fc-border-${camelToKebab(key)}`] = value;
             }
         }
-
-        // Map shadow tokens
-        if (theme.shadows) {
-            for (const [key, value] of Object.entries(theme.shadows)) {
+        if (t.shadows) {
+            for (const [key, value] of Object.entries(t.shadows)) {
                 if (value) vars[`--fc-shadow-${camelToKebab(key)}`] = value;
             }
         }
-
-        // Map transition tokens
-        if (theme.transitions) {
-            for (const [key, value] of Object.entries(theme.transitions)) {
+        if (t.transitions) {
+            for (const [key, value] of Object.entries(t.transitions)) {
                 if (value) vars[`--fc-transition-${camelToKebab(key)}`] = value;
             }
         }
-
-        // Merge any arbitrary CSS custom properties
-        if (theme.cssVars) {
-            Object.assign(vars, theme.cssVars);
+        if (t.cssVars) {
+            Object.assign(vars, t.cssVars);
         }
 
         return vars;
     });
 
     const instance: ThemeInstance = {
-        config: theme,
+        config: themeRef.value,
         classes,
         cssVars,
     };

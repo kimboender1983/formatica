@@ -2,11 +2,10 @@
     import type { Component, ComputedRef } from "vue";
     import { computed, inject } from "vue";
     import { FormComponentsKey, getFieldComponent } from "../core/fieldRegistry";
-    import { evaluateCondition } from "../core/useConditions";
+    import type { FieldSchema } from "@formatica/core";
+    import { evaluateCondition, extractFields } from "@formatica/core";
     import { FormContextKey } from "../core/useForm";
     import type { FormInstance } from "../types/form";
-    import type { FieldSchema } from "../types/schema";
-    import { extractFields } from "../utils/extractFields";
     import BaseField from "./BaseField.vue";
 
     const props = defineProps<{

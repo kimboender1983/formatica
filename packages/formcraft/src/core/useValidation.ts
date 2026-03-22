@@ -3,11 +3,9 @@
 // ---------------------------------------------------------------------------
 
 import { type Ref, ref } from "vue";
+import type { FieldSchema, FormSettings, ValidationRule } from "@formatica/core";
+import { evaluateCondition, getRule } from "@formatica/core";
 import type { FormContext } from "../types/form";
-import type { FieldSchema, FormSettings } from "../types/schema";
-import type { ValidationRule } from "../types/validation";
-import { getRule } from "./ruleRegistry";
-import { evaluateCondition } from "./useConditions";
 
 // ---------------------------------------------------------------------------
 // Rule string parser ("required|minLength:3|email" → ValidationRule[])

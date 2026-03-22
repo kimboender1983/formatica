@@ -172,9 +172,10 @@
       :class="[
         'flex min-h-[38px] w-full cursor-pointer items-center rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm',
         'transition-colors duration-200',
-        isOpen ? 'border-blue-500 ring-2 ring-blue-500/20' : '',
+        !isOpen ? '' : 'ring-2 ring-blue-500/20',
         disabled ? 'pointer-events-none bg-gray-100' : '',
       ]"
+      :style="isOpen ? { borderColor: 'var(--fc-color-primary, #3b82f6)' } : {}"
       @click="toggle"
       @keydown="onKeydown"
     >
@@ -184,12 +185,14 @@
           <span
             v-for="val in selectedValues"
             :key="String(val)"
-            class="inline-flex items-center gap-1 rounded bg-blue-100 px-2 py-0.5 text-xs text-blue-800"
+            class="inline-flex items-center gap-1 rounded px-2 py-0.5 text-xs"
+            :style="{ backgroundColor: 'color-mix(in srgb, var(--fc-color-primary, #3b82f6) 15%, white)', color: 'var(--fc-color-primary, #3b82f6)' }"
           >
             {{ tagLabel(val) }}
             <button
               type="button"
-              class="ml-0.5 text-blue-600 hover:text-blue-800"
+              class="ml-0.5"
+              :style="{ color: 'var(--fc-color-primary, #3b82f6)' }"
               aria-label="Remove"
               @click.stop="removeTag(val)"
             >
@@ -239,7 +242,7 @@
           ref="searchInputRef"
           v-model="search"
           type="text"
-          class="w-full rounded border border-gray-300 px-2 py-1 text-sm focus:border-blue-500 focus:outline-none"
+          class="w-full rounded border border-gray-300 px-2 py-1 text-sm focus:outline-none fc-select-search"
           placeholder="Search..."
           @keydown="onKeydown"
         />
@@ -253,10 +256,11 @@
           :aria-selected="isSelected(option.value)"
           :class="[
             'cursor-pointer px-3 py-2 text-sm transition-colors duration-200',
-            isSelected(option.value) ? 'bg-blue-50 text-blue-700' : 'text-gray-900',
+            !isSelected(option.value) ? 'text-gray-900' : '',
             highlightedIndex === idx ? 'bg-gray-100' : '',
             option.disabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-50',
           ]"
+          :style="isSelected(option.value) ? { backgroundColor: 'color-mix(in srgb, var(--fc-color-primary, #3b82f6) 8%, white)', color: 'var(--fc-color-primary, #3b82f6)' } : {}"
           @click="selectOption(option)"
           @mouseenter="highlightedIndex = idx"
         >
@@ -269,3 +273,9 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+.fc-select-search:focus {
+  border-color: var(--fc-color-primary, #3b82f6);
+}
+</style>

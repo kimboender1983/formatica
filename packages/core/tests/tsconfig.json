@@ -1,0 +1,10 @@
+{
+    "extends": "../../../tsconfig.base.json",
+    "compilerOptions": {
+        "types": ["vitest/globals"],
+        "paths": {
+            "@formatica/core": ["../src/index.ts"]
+        }
+    },
+    "include": ["./**/*.test.ts"]
+}

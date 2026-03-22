@@ -1,12 +1,10 @@
 <script setup lang="ts">
-    import { type Component, computed, onMounted, provide, watch } from "vue";
+    import { type Component, computed, onMounted, provide, toRef, watch } from "vue";
     import { FormComponentsKey, hasFieldType, registerFieldType } from "../core/fieldRegistry";
     import { useForm } from "../core/useForm";
     import { useFormI18nContext } from "../core/useFormI18n";
     import { useTheme, useThemeClasses } from "../core/useTheme";
-    import type { LayoutSchema } from "../types/layout";
-    import type { FormSchema, SchemaNode } from "../types/schema";
-    import type { ThemeConfig } from "../types/theme";
+    import type { FormSchema, LayoutSchema, SchemaNode, ThemeConfig } from "@formatica/core";
     import CheckboxGroupInput from "./inputs/CheckboxGroupInput.vue";
     import CheckboxInput from "./inputs/CheckboxInput.vue";
     import DateInput from "./inputs/DateInput.vue";
@@ -75,8 +73,8 @@
         computed(() => props.components ?? {}),
     );
 
-    // Initialize theme (provides FormThemeKey)
-    useTheme(props.theme);
+    // Initialize theme (provides FormThemeKey) — reactive to prop changes
+    useTheme(toRef(props, "theme"));
     const themeInstance = useThemeClasses();
 
     // Initialize form (provides FormContextKey and FormI18nKey)
@@ -184,6 +182,8 @@
     function onReset() {
         form.reset();
     }
+
+    defineExpose({ form });
 </script>
 
 <template>
@@ -219,7 +219,8 @@
         type="submit"
         :disabled="form.isSubmitting.value"
         :class="themeInstance.classes.value.button"
-        class="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white motion-safe:transition-colors motion-safe:duration-150 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500/40 disabled:cursor-not-allowed disabled:opacity-50"
+        class="fc-submit-btn rounded-md px-4 py-2 text-sm font-medium text-white motion-safe:transition-colors motion-safe:duration-150 focus:outline-none focus:ring-2 focus:ring-blue-500/40 disabled:cursor-not-allowed disabled:opacity-50"
+        style="background-color: var(--fc-color-primary, #3b82f6)"
       >
         <span
           v-if="form.isSubmitting.value"

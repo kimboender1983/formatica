@@ -6,7 +6,7 @@
     ],
     "scripts": {
         "dev": "yarn workspace formatica-playground dev",
-        "build": "yarn workspace @formatica/vue build",
+        "build": "yarn workspace @formatica/core build && yarn workspace @formatica/vue build && yarn workspace @formatica/react build",
         "build:playground": "yarn workspace formatica-playground build",
         "lint": "biome check .",
         "lint:fix": "biome check --write .",

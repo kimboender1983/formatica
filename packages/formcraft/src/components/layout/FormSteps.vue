@@ -100,13 +100,14 @@
             :aria-label="`Step ${idx + 1}: ${step.title}`"
             class="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 text-xs font-semibold motion-safe:transition-all motion-safe:duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500/40"
             :class="[
-              idx === currentStep
-                ? 'border-blue-500 bg-blue-500 text-white'
-                : completedSteps.has(idx)
-                  ? 'border-green-500 bg-green-500 text-white'
-                  : 'border-gray-300 bg-white text-gray-500',
+              completedSteps.has(idx) && idx !== currentStep
+                ? 'border-green-500 bg-green-500 text-white'
+                : idx !== currentStep
+                  ? 'border-gray-300 bg-white text-gray-500'
+                  : 'text-white',
               linear && idx > currentStep ? 'cursor-not-allowed' : 'cursor-pointer hover:shadow-md',
             ]"
+            :style="idx === currentStep ? { borderColor: 'var(--fc-color-primary, #3b82f6)', backgroundColor: 'var(--fc-color-primary, #3b82f6)' } : {}"
             @click="goToStep(idx)"
           >
             <!-- Checkmark for completed -->
@@ -176,7 +177,7 @@
       <button
         type="button"
         :disabled="isFirstStep"
-        class="rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 motion-safe:transition-colors motion-safe:duration-150 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500/40 disabled:cursor-not-allowed disabled:opacity-50"
+        class="rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 motion-safe:transition-colors motion-safe:duration-150 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500/40 disabled:cursor-not-allowed disabled:opacity-50 fc-steps-prev-btn"
         @click="goPrevious"
       >
         Previous
@@ -187,7 +188,8 @@
       <button
         v-if="!isLastStep"
         type="button"
-        class="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white motion-safe:transition-colors motion-safe:duration-150 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500/40"
+        class="rounded-md px-4 py-2 text-sm font-medium text-white motion-safe:transition-colors motion-safe:duration-150 focus:outline-none focus:ring-2 focus:ring-blue-500/40 fc-steps-next-btn"
+        :style="{ backgroundColor: 'var(--fc-color-primary, #3b82f6)' }"
         @click="goNext"
       >
         Next

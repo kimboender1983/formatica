@@ -213,7 +213,7 @@
     >
       <div
         v-if="isOpen"
-        class="fixed right-4 top-16 z-[100] mt-2 w-80 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-5 shadow-xl max-h-[80vh] overflow-y-auto"
+        class="absolute left-0 top-full z-[100] mt-2 w-72 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 shadow-xl max-h-[80vh] overflow-y-auto"
       >
         <!-- Close button -->
         <div class="mb-4 flex items-center justify-between">

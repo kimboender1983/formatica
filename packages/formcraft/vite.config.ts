@@ -12,9 +12,9 @@ export default defineConfig({
             fileName: (format) => `formatica.${format === "es" ? "es.js" : "umd.cjs"}`,
         },
         rollupOptions: {
-            external: ["vue", "libphonenumber-js"],
+            external: ["vue", "libphonenumber-js", "@formatica/core"],
             output: {
-                globals: { vue: "Vue", "libphonenumber-js": "libphonenumber" },
+                globals: { vue: "Vue", "libphonenumber-js": "libphonenumber", "@formatica/core": "FormaticaCore" },
             },
         },
         sourcemap: true,

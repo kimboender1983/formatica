@@ -28,7 +28,7 @@
     const baseClasses = computed(() =>
         [
             "w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm",
-            "focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20",
+            "focus:outline-none focus:ring-2 focus:ring-blue-500/20 fc-date-input",
             "transition-colors duration-200",
             props.disabled ? "opacity-50 cursor-not-allowed bg-gray-100" : "",
             theme.classes.value.input,
@@ -58,3 +58,9 @@
     @focus="emit('focus', $event)"
   />
 </template>
+
+<style scoped>
+.fc-date-input:focus {
+  border-color: var(--fc-color-primary, #3b82f6);
+}
+</style>

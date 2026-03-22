@@ -75,12 +75,13 @@
         :tabindex="idx === activeIndex ? 0 : -1"
         class="relative px-4 py-2.5 text-sm font-medium motion-safe:transition-colors motion-safe:duration-150 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500/40"
         :class="[
-          idx === activeIndex
-            ? 'text-blue-600'
-            : tab.disabled
+          idx !== activeIndex
+            ? tab.disabled
               ? 'cursor-not-allowed text-gray-300'
-              : 'text-gray-500 hover:text-gray-700',
+              : 'text-gray-500 hover:text-gray-700'
+            : '',
         ]"
+        :style="idx === activeIndex ? { color: 'var(--fc-color-primary, #3b82f6)' } : {}"
         @click="selectTab(idx)"
         @keydown="onKeydown($event, idx)"
       >
@@ -88,7 +89,8 @@
         <!-- Active underline indicator -->
         <span
           v-if="idx === activeIndex"
-          class="absolute inset-x-0 -bottom-px h-0.5 bg-blue-500 motion-safe:transition-all motion-safe:duration-200"
+          class="absolute inset-x-0 -bottom-px h-0.5 motion-safe:transition-all motion-safe:duration-200"
+          :style="{ backgroundColor: 'var(--fc-color-primary, #3b82f6)' }"
         />
       </button>
     </div>

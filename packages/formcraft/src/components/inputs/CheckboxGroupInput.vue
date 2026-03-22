@@ -93,9 +93,10 @@
         :class="[
           'flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 transition-colors duration-200',
           isChecked(option.value)
-            ? 'border-blue-500 bg-blue-500 text-white'
+            ? 'text-white'
             : 'border-gray-300 bg-white',
         ]"
+        :style="isChecked(option.value) ? { borderColor: 'var(--fc-color-primary, #3b82f6)', backgroundColor: 'var(--fc-color-primary, #3b82f6)' } : {}"
         @click="toggleOption(option)"
         @keydown="onKeydown($event, option)"
       >

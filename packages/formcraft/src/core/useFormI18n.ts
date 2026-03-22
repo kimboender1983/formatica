@@ -3,8 +3,8 @@
 // ---------------------------------------------------------------------------
 
 import { type InjectionKey, inject, provide, type Ref } from "vue";
-import type { FieldTranslations, FormTranslations } from "../types/schema";
-import { titleCase } from "../utils/titleCase";
+import type { FieldTranslations, FormTranslations } from "@formatica/core";
+import { titleCase } from "@formatica/core";
 
 // ---------------------------------------------------------------------------
 // Injection key

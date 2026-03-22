@@ -122,22 +122,25 @@
     <div
       :class="[
         'flex flex-wrap items-center gap-1.5 rounded-md border bg-white px-2 py-1.5 text-sm transition-colors duration-200',
-        isFocused ? 'border-blue-500 ring-2 ring-blue-500/20' : 'border-gray-300',
+        !isFocused ? 'border-gray-300' : 'ring-2 ring-blue-500/20',
         theme.classes.value.input,
       ]"
+      :style="isFocused ? { borderColor: 'var(--fc-color-primary, #3b82f6)' } : {}"
       @click="inputRef?.focus()"
     >
       <!-- Tags -->
       <span
         v-for="(tag, idx) in tags"
         :key="tag"
-        class="inline-flex items-center gap-1 rounded bg-blue-100 px-2 py-0.5 text-xs text-blue-800"
+        class="inline-flex items-center gap-1 rounded px-2 py-0.5 text-xs"
+        :style="{ backgroundColor: 'color-mix(in srgb, var(--fc-color-primary, #3b82f6) 15%, white)', color: 'var(--fc-color-primary, #3b82f6)' }"
       >
         {{ tag }}
         <button
           v-if="!disabled"
           type="button"
-          class="ml-0.5 text-blue-600 hover:text-blue-800 transition-colors duration-200"
+          class="ml-0.5 transition-colors duration-200"
+          :style="{ color: 'var(--fc-color-primary, #3b82f6)' }"
           aria-label="Remove tag"
           @click.stop="removeTag(idx)"
         >
@@ -171,8 +174,9 @@
         :aria-selected="highlightedIndex === idx"
         :class="[
           'cursor-pointer px-3 py-2 text-sm transition-colors duration-200',
-          highlightedIndex === idx ? 'bg-blue-50 text-blue-700' : 'text-gray-900 hover:bg-gray-50',
+          highlightedIndex !== idx ? 'text-gray-900 hover:bg-gray-50' : '',
         ]"
+        :style="highlightedIndex === idx ? { backgroundColor: 'color-mix(in srgb, var(--fc-color-primary, #3b82f6) 8%, white)', color: 'var(--fc-color-primary, #3b82f6)' } : {}"
         @mousedown.prevent="addTag(suggestion)"
         @mouseenter="highlightedIndex = idx"
       >

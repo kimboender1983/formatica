@@ -71,16 +71,16 @@
         tabindex="0"
         :class="[
           'flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors duration-200',
-          isSelected(option.value)
-            ? 'border-blue-500'
-            : 'border-gray-300',
+          !isSelected(option.value) ? 'border-gray-300' : '',
         ]"
+        :style="isSelected(option.value) ? { borderColor: 'var(--fc-color-primary, #3b82f6)' } : {}"
         @click="selectOption(option)"
         @keydown="onKeydown($event, option)"
       >
         <div
           v-if="isSelected(option.value)"
-          class="h-2.5 w-2.5 rounded-full bg-blue-500"
+          class="h-2.5 w-2.5 rounded-full"
+          :style="{ backgroundColor: 'var(--fc-color-primary, #3b82f6)' }"
         />
       </div>
       <span class="text-sm text-gray-700">{{ option.label }}</span>
