@@ -27,6 +27,7 @@
 
         const vueOnly = [
             { id: "quick-start", label: "Quick Start" },
+            { id: "plugin-setup", label: "Plugin Setup" },
             { id: "form-builder", label: "FormBuilder Props" },
             { id: "events", label: "Events & v-model" },
             { id: "use-form", label: "useForm()" },
@@ -36,6 +37,7 @@
 
         const reactOnly = [
             { id: "quick-start", label: "Quick Start" },
+            { id: "provider-setup", label: "Provider Setup" },
             { id: "form-builder", label: "FormBuilder Props" },
             { id: "use-form", label: "useForm()" },
             { id: "custom-components", label: "Custom Components" },
@@ -271,6 +273,19 @@
         return "npm install @formatica/core\n# or\nyarn add @formatica/core";
     });
 
+    const installCssCode = computed(() => {
+        if (platform.value === "vue") {
+            return "import '@formatica/vue/style.css'";
+        }
+        if (platform.value === "react") {
+            return [
+                "// The CSS file is published via @formatica/vue",
+                "import '@formatica/vue/style.css'",
+            ].join("\n");
+        }
+        return "";
+    });
+
     const installNote = computed(() => {
         if (platform.value === "core") {
             return "Zero external dependencies. Lightweight and framework-agnostic.";
@@ -432,6 +447,25 @@
 
     // ── Vue code examples ────────────────────────────────────────────────────
 
+    const vuePluginInstallCode = [
+        "// main.ts",
+        "import { createApp } from 'vue'",
+        "import { createFormatica } from '@formatica/vue'",
+        "import '@formatica/vue/style.css'",
+        "import App from './App.vue'",
+        "",
+        "const app = createApp(App)",
+        "app.use(createFormatica({",
+        "  theme: {",
+        "    name: 'my-theme',",
+        "    colors: { primary: '#059669', error: '#dc2626' },",
+        "    borders: { radius: '0.5rem' },",
+        "  },",
+        "  locale: 'en',",
+        "}))",
+        "app.mount('#app')",
+    ].join("\n");
+
     const vueQuickStartCode = [
         "<script setup lang='ts'>",
         "import { ref } from 'vue'",
@@ -588,13 +622,21 @@
     ].join("\n");
 
     const customFieldsVueGlobalCode = [
+        "// Option 1: Register via the plugin (recommended)",
+        "app.use(createFormatica({",
+        "  components: {",
+        "    rating: MyRatingInput,  // register new type",
+        "    text: MyCustomText,     // override built-in",
+        "  },",
+        "}))",
+        "",
+        "// Option 2: Register imperatively (e.g. in main.ts)",
         "import { registerFieldType } from '@formatica/vue'",
         "import MyRatingInput from './MyRatingInput.vue'",
         "",
-        "// Call once at app startup (e.g. in main.ts)",
         "registerFieldType('rating', MyRatingInput)",
         "",
-        "// Now all FormBuilder instances can use { type: 'rating' }",
+        "// Both approaches make the type available to all FormBuilder instances",
     ].join("\n");
 
     const customFieldsVueComponentCode = [
@@ -630,6 +672,96 @@
         "    </button>",
         "  </div>",
         "</template>",
+    ].join("\n");
+
+    const vuePluginOptionsCode = [
+        "interface FormaticaOptions {",
+        "  theme?: ThemeConfig      // Global theme (colors, borders, typography, etc.)",
+        "  locale?: string          // Active locale (default: 'en')",
+        "  fallbackLocale?: string  // Fallback when key is missing (default: 'en')",
+        "  components?: Record<string, Component>  // Custom/override field components",
+        "}",
+        "",
+        "// Props passed to FormBuilder always win over globals:",
+        "// <FormBuilder :theme='localTheme' />  \u2190 localTheme overrides global theme",
+        "// <FormBuilder locale='nl' />           \u2190 'nl' overrides global locale",
+    ].join("\n");
+
+    const reactProviderCode = [
+        "import { FormaticaProvider } from '@formatica/react'",
+        "import '@formatica/vue/style.css'",
+        "",
+        "function App() {",
+        "  return (",
+        "    <FormaticaProvider config={{",
+        "      theme: {",
+        "        name: 'my-theme',",
+        "        colors: { primary: '#059669', error: '#dc2626' },",
+        "        borders: { radius: '0.5rem' },",
+        "      },",
+        "      locale: 'en',",
+        "    }}>",
+        "      <MyForms />",
+        "    </FormaticaProvider>",
+        "  )",
+        "}",
+    ].join("\n");
+
+    const reactProviderHookCode = [
+        "import { useFormaticaConfig } from '@formatica/react'",
+        "",
+        "// Access global config from any component inside FormaticaProvider",
+        "function MyComponent() {",
+        "  const config = useFormaticaConfig()",
+        "  console.log(config.locale)  // 'en'",
+        "  console.log(config.theme)   // ThemeConfig object",
+        "  return <div>...</div>",
+        "}",
+    ].join("\n");
+
+    const reactProviderOptionsCode = [
+        "interface FormaticaConfig {",
+        "  theme?: ThemeConfig",
+        "  locale?: string",
+        "  fallbackLocale?: string",
+        "  components?: Record<string, ComponentType<FieldComponentProps>>",
+        "}",
+        "",
+        "// Props passed to FormBuilder always win over provider config",
+    ].join("\n");
+
+    const coreConfigureCode = [
+        "import { configureFormatica } from '@formatica/core'",
+        "",
+        "configureFormatica({",
+        "  theme: {",
+        "    name: 'my-theme',",
+        "    colors: { primary: '#059669' },",
+        "  },",
+        "  locale: 'en',",
+        "})",
+    ].join("\n");
+
+    const themingCssVarsCode = [
+        "/* CSS variables set by the theme (customizable via ThemeConfig) */",
+        "--fc-color-primary       /* Primary color (buttons, focus rings, accents) */",
+        "--fc-color-error         /* Error color (validation messages, borders) */",
+        "--fc-color-success       /* Success color */",
+        "--fc-border-radius       /* Border radius for inputs and buttons */",
+        "--fc-color-border        /* Default border color */",
+        "--fc-color-border-focus  /* Border color on focus (defaults to primary) */",
+        "--fc-input-padding-x     /* Horizontal input padding */",
+        "--fc-input-padding-y     /* Vertical input padding */",
+    ].join("\n");
+
+    const themingDarkModeCode = [
+        "<!-- Dark mode: add the 'dark' class to an ancestor -->",
+        "<!-- Works with Tailwind's darkMode: 'class' -->",
+        '<html class="dark">',
+        "  <body>",
+        "    <!-- All Formatica components auto-switch to dark styles -->",
+        "  </body>",
+        "</html>",
     ].join("\n");
 
     const themingVueCode = [
@@ -1194,6 +1326,13 @@
         <!-- ─── INSTALLATION ────────────────────────────────── -->
         <DocSection id="installation" title="Installation" description="Install the package for your project.">
           <DocCodeBlock language="bash" :code="installCode" />
+          <template v-if="platform !== 'core'">
+            <h4 class="mt-6 mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">Import the CSS</h4>
+            <p class="mb-3 text-xs text-gray-500 dark:text-gray-400">
+              Required for theming, dark mode, and base styling. Add this import once in your entry file.
+            </p>
+            <DocCodeBlock language="typescript" :code="installCssCode" />
+          </template>
           <p class="mt-3 text-xs text-gray-500 dark:text-gray-400">{{ installNote }}</p>
         </DocSection>
 
@@ -1245,13 +1384,44 @@
         </DocSection>
 
         <!-- ─── VUE: QUICK START ────────────────────────────── -->
-        <DocSection v-if="platform === 'vue'" id="quick-start" title="Quick Start" description="Minimal working form with @formatica/vue.">
+        <DocSection v-if="platform === 'vue'" id="quick-start" title="Quick Start" description="Install the plugin, then drop in a FormBuilder component.">
+          <h4 class="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">1. Install the plugin (main.ts)</h4>
+          <DocCodeBlock language="typescript" :code="vuePluginInstallCode" />
+
+          <h4 class="mt-6 mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">2. Use FormBuilder in any component</h4>
           <DocCodeBlock language="vue" :code="vueQuickStartCode" />
         </DocSection>
 
+        <!-- ─── VUE: PLUGIN SETUP ──────────────────────────── -->
+        <DocSection v-if="platform === 'vue'" id="plugin-setup" title="Plugin Setup" description="createFormatica() configures global defaults for theme, locale, and custom components. All options are optional.">
+          <h4 class="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">FormaticaOptions interface</h4>
+          <DocCodeBlock language="typescript" :code="vuePluginOptionsCode" />
+
+          <h4 class="mt-6 mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">How globals merge with props</h4>
+          <p class="mb-3 text-xs text-gray-500 dark:text-gray-400">
+            When you install the plugin, all FormBuilder instances inherit the global theme, locale, and components.
+            Props passed directly to FormBuilder always take priority over the global values.
+            This lets you set sensible defaults once and override them per-form when needed.
+          </p>
+
+          <h4 class="mt-6 mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">Registering custom components globally</h4>
+          <p class="mb-3 text-xs text-gray-500 dark:text-gray-400">
+            Components passed to <code class="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-[11px]">createFormatica({ components })</code>
+            are registered in the global field registry. Every FormBuilder instance can then use those types in its schema
+            without passing <code class="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-[11px]">:components</code> as a prop.
+          </p>
+        </DocSection>
+
         <!-- ─── VUE: FORMBUILDER PROPS ──────────────────────── -->
-        <DocSection v-if="platform === 'vue'" id="form-builder" title="FormBuilder Props" description="All props accepted by the Vue FormBuilder component.">
+        <DocSection v-if="platform === 'vue'" id="form-builder" title="FormBuilder Props" description="All props accepted by the Vue FormBuilder component. When using the plugin, theme, locale, and components are optional (inherited from createFormatica).">
           <DocPropsTable :columns="['Prop', 'Type', 'Default', 'Description']" :rows="vueFormBuilderProps" />
+          <p class="mt-3 text-xs text-gray-500 dark:text-gray-400">
+            When the <code class="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-[11px]">createFormatica()</code> plugin is installed,
+            <code class="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-[11px]">theme</code>,
+            <code class="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-[11px]">locale</code>, and
+            <code class="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-[11px]">components</code>
+            are inherited from the global config. Props override globals.
+          </p>
         </DocSection>
 
         <!-- ─── VUE: EVENTS & V-MODEL ───────────────────────── -->
@@ -1287,9 +1457,28 @@
         </DocSection>
 
         <!-- ─── VUE: THEMING ────────────────────────────────── -->
-        <DocSection v-if="platform === 'vue'" id="theming" title="Theming" description="Customize colors, spacing, and component styles.">
-          <h4 class="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">ThemeConfig prop</h4>
+        <DocSection v-if="platform === 'vue'" id="theming" title="Theming" description="Customize colors, spacing, and component styles. Requires the CSS import.">
+          <h4 class="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">CSS file import</h4>
+          <p class="mb-3 text-xs text-gray-500 dark:text-gray-400">
+            The CSS file (<code class="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-[11px]">@formatica/vue/style.css</code>) is required for theming.
+            It defines CSS variables that map to your ThemeConfig values and provides base styling for all form elements.
+          </p>
+
+          <h4 class="mt-6 mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">ThemeConfig prop</h4>
           <DocCodeBlock language="vue" :code="themingVueCode" />
+
+          <h4 class="mt-6 mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">CSS variables</h4>
+          <p class="mb-3 text-xs text-gray-500 dark:text-gray-400">
+            Theme colors and spacing map to CSS custom properties. You can also override these directly in your own CSS.
+          </p>
+          <DocCodeBlock language="css" :code="themingCssVarsCode" />
+
+          <h4 class="mt-6 mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">Dark mode</h4>
+          <p class="mb-3 text-xs text-gray-500 dark:text-gray-400">
+            Formatica supports dark mode via the <code class="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-[11px]">.dark</code> class on any ancestor element.
+            This is compatible with Tailwind's <code class="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-[11px]">darkMode: 'class'</code> setting.
+          </p>
+          <DocCodeBlock language="html" :code="themingDarkModeCode" />
 
           <h4 class="mt-6 mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">Tailwind CSS configuration</h4>
           <p class="mb-3 text-xs text-gray-500 dark:text-gray-400">
@@ -1299,8 +1488,24 @@
         </DocSection>
 
         <!-- ─── REACT: QUICK START ──────────────────────────── -->
-        <DocSection v-if="platform === 'react'" id="quick-start" title="Quick Start" description="Minimal working form with @formatica/react.">
+        <DocSection v-if="platform === 'react'" id="quick-start" title="Quick Start" description="Wrap your app in FormaticaProvider, then use FormBuilder anywhere.">
+          <h4 class="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">1. Set up the provider (App.tsx)</h4>
+          <DocCodeBlock language="tsx" :code="reactProviderCode" />
+
+          <h4 class="mt-6 mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">2. Use FormBuilder in any component</h4>
           <DocCodeBlock language="tsx" :code="reactQuickStartCode" />
+        </DocSection>
+
+        <!-- ─── REACT: PROVIDER SETUP ─────────────────────── -->
+        <DocSection v-if="platform === 'react'" id="provider-setup" title="Provider Setup" description="FormaticaProvider supplies global theme, locale, and components to all nested FormBuilder instances.">
+          <h4 class="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">FormaticaConfig interface</h4>
+          <DocCodeBlock language="typescript" :code="reactProviderOptionsCode" />
+
+          <h4 class="mt-6 mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">useFormaticaConfig()</h4>
+          <p class="mb-3 text-xs text-gray-500 dark:text-gray-400">
+            Access the global config from any component inside the provider tree.
+          </p>
+          <DocCodeBlock language="tsx" :code="reactProviderHookCode" />
         </DocSection>
 
         <!-- ─── REACT: FORMBUILDER PROPS ────────────────────── -->
@@ -1328,9 +1533,28 @@
         </DocSection>
 
         <!-- ─── REACT: THEMING ──────────────────────────────── -->
-        <DocSection v-if="platform === 'react'" id="theming" title="Theming" description="Customize colors, spacing, and component styles.">
-          <h4 class="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">className and CSS variables</h4>
+        <DocSection v-if="platform === 'react'" id="theming" title="Theming" description="Customize colors, spacing, and component styles. Requires the CSS import.">
+          <h4 class="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">CSS file import</h4>
+          <p class="mb-3 text-xs text-gray-500 dark:text-gray-400">
+            The CSS file (<code class="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-[11px]">@formatica/vue/style.css</code>) is required for theming.
+            The same file works for both Vue and React.
+          </p>
+
+          <h4 class="mt-6 mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">className and CSS variables</h4>
           <DocCodeBlock language="tsx" :code="themingReactCode" />
+
+          <h4 class="mt-6 mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">CSS variables</h4>
+          <p class="mb-3 text-xs text-gray-500 dark:text-gray-400">
+            Theme colors and spacing map to CSS custom properties. You can also override these directly in your own CSS.
+          </p>
+          <DocCodeBlock language="css" :code="themingCssVarsCode" />
+
+          <h4 class="mt-6 mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">Dark mode</h4>
+          <p class="mb-3 text-xs text-gray-500 dark:text-gray-400">
+            Formatica supports dark mode via the <code class="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-[11px]">.dark</code> class on any ancestor element.
+            This is compatible with Tailwind's <code class="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-[11px]">darkMode: 'class'</code> setting.
+          </p>
+          <DocCodeBlock language="html" :code="themingDarkModeCode" />
 
           <h4 class="mt-6 mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">Tailwind CSS configuration</h4>
           <p class="mb-3 text-xs text-gray-500 dark:text-gray-400">
@@ -1341,6 +1565,10 @@
 
         <!-- ─── CORE: QUICK START ───────────────────────────── -->
         <DocSection v-if="platform === 'core'" id="quick-start" title="Quick Start (Standalone)" description="Use @formatica/core without any framework for schema parsing, validation, condition evaluation, and server-side processing.">
+          <h4 class="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">Global configuration (optional)</h4>
+          <DocCodeBlock language="typescript" :code="coreConfigureCode" />
+
+          <h4 class="mt-6 mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">Usage</h4>
           <DocCodeBlock language="typescript" :code="coreQuickStartCode" />
         </DocSection>
 
