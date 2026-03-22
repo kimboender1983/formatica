@@ -123,7 +123,10 @@ export function useValidation(options: UseValidationOptions): UseValidationRetur
             debouncedValidators.set(
                 key,
                 debounce(async (...args: never[]) => {
-                    return runValidateField(args[0] as unknown as string, args[1] as unknown as FormContext);
+                    return runValidateField(
+                        args[0] as unknown as string,
+                        args[1] as unknown as FormContext,
+                    );
                 }, ms),
             );
         }

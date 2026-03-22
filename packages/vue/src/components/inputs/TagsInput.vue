@@ -62,7 +62,10 @@
     function onKeydown(event: KeyboardEvent) {
         if (event.key === "Enter" || event.key === ",") {
             event.preventDefault();
-            const suggestion = highlightedIndex.value >= 0 ? filteredSuggestions.value[highlightedIndex.value] : undefined;
+            const suggestion =
+                highlightedIndex.value >= 0
+                    ? filteredSuggestions.value[highlightedIndex.value]
+                    : undefined;
             if (suggestion) {
                 addTag(suggestion);
             } else {

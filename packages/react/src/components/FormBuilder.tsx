@@ -3,9 +3,9 @@
 // ---------------------------------------------------------------------------
 
 import type {
+    FormContext as CoreFormContext,
     DividerNode,
     FieldSchema,
-    FormContext as CoreFormContext,
     FormSchema,
     GroupNode,
     OptionItem,
