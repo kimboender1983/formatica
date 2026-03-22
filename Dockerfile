@@ -1,20 +1,19 @@
 FROM node:20-alpine AS builder
 
-# Enable corepack for yarn
+# Enable corepack for yarn (uses packageManager field from package.json)
 RUN corepack enable
 
 WORKDIR /app
 
-# Copy workspace config
+# Copy workspace config (no .yarn dir — corepack handles yarn binary)
 COPY package.json yarn.lock .yarnrc.yml ./
-COPY .yarn .yarn
 COPY packages/core/package.json packages/core/
 COPY packages/formcraft/package.json packages/formcraft/
 COPY packages/react/package.json packages/react/
 COPY playground/package.json playground/
 
 # Install dependencies
-RUN yarn install --immutable
+RUN yarn install
 
 # Copy source
 COPY . .
