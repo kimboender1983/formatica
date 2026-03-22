@@ -12,10 +12,11 @@
         "lint:fix": "biome check --write .",
         "format": "biome format --write .",
         "typecheck": "yarn workspaces foreach -A run typecheck",
-        "test": "vitest"
+        "test": "vitest --config packages/formcraft/vitest.config.ts"
     },
     "devDependencies": {
         "@biomejs/biome": "^2.4.4",
+        "happy-dom": "^20.8.4",
         "typescript": "^5.4.0",
         "vitest": "^1.6.0"
     },

@@ -1,0 +1,10 @@
+{
+    "extends": "../../../tsconfig.base.json",
+    "compilerOptions": {
+        "types": ["vitest/globals"],
+        "paths": {
+            "@formcraft/vue": ["../src/index.ts"]
+        }
+    },
+    "include": ["./**/*.ts"]
+}
