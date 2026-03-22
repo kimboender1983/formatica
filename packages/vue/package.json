@@ -1,6 +1,6 @@
 {
     "name": "@formatica/vue",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "Schema-driven, fully-typed form builder for Vue 3",
     "type": "module",
     "main": "./dist/formatica.umd.cjs",
@@ -65,7 +65,7 @@
     ],
     "license": "MIT",
     "dependencies": {
-        "@formatica/core": "workspace:*",
+        "@formatica/core": "^0.1.0",
         "libphonenumber-js": "^1.12.40"
     }
 }
