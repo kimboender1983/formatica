@@ -1,6 +1,6 @@
 <script setup lang="ts">
     import type { FormSchema, ThemeConfig } from "@formatica/vue";
-    import { extractFields, type FormBuilder } from "@formatica/vue";
+    import { extractFields, FormBuilder } from "@formatica/vue";
     import { computed, ref, watch } from "vue";
 
     const props = withDefaults(
